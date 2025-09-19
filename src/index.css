@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Chewy-Regular";
+  src: url("/fonts/Chewy-Regular.ttf") format("truetype");
+}
