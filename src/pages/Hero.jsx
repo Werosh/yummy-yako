@@ -164,7 +164,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            className="text-6xl lg:text-9xl font-bold text-gray-800 mb-4 leading-tight tracking-[10px] font-[Chewy-Regular]"
+            className="text-6xl lg:text-9xl font-bold text-gray-800 mb-4 leading-tight tracking-[10px] "
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.8 }}
@@ -251,24 +251,14 @@ const Hero = () => {
               perspective: "1000px",
             }}
           >
-            {/* Glowing background effect */}
-            <motion.div
-              className="absolute inset-0  rounded-full "
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-
             {/* Main image container */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div className="w-full h-full b  rounded-3xl   flex items-center justify-center overflow-hidden">
-                {/* Fallback if image doesn't load */}
-                <div className="absolute inset-0 flex items-center justify-center text-6xl ">
-                  <img
-                    src={VanIMg}
-                    alt="Yummy Yako Dessert"
-                    className="w-full h-full object-cover rounded-3xl"
-                  />
-                </div>
+              <motion.div className="w-full h-full rounded-3xl flex items-center justify-center overflow-hidden">
+                <img
+                  src={VanIMg}
+                  alt="Yummy Yako Dessert"
+                  className="w-full h-full object-cover rounded-3xl"
+                />
               </motion.div>
             </div>
 
@@ -305,8 +295,6 @@ const Hero = () => {
             >
               🍦
             </motion.div>
-
-            {/* Additional floating element */}
             <motion.div
               className="absolute -left-6 top-1/2 text-2xl"
               animate={{
