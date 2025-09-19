@@ -97,7 +97,7 @@ const Hero = () => {
   //   );
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden mr-5 ml-5 mb-8 rounded-b-[70px] shadow-lg">
       {/* Background - Fixed the image reference */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"
@@ -126,7 +126,7 @@ const Hero = () => {
       ))}
 
       {/* Sparkles */}
-      {[...Array(6)].map((_, i) => (
+      {/* {[...Array(6)].map((_, i) => (
         <motion.div
           key={`sparkle-${i}`}
           className="absolute text-2xl"
@@ -139,7 +139,7 @@ const Hero = () => {
         >
           ✨
         </motion.div>
-      ))}
+      ))} */}
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-between px-8 lg:px-16">
@@ -164,7 +164,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            className="text-6xl lg:text-9xl font-bold text-gray-800 mb-4 leading-tight tracking-[10px] "
+            className="text-6xl lg:text-9xl font-bold text-gray-800 mb-4 leading-tight tracking-[10px] font-[Chewy-Regular]"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.8 }}

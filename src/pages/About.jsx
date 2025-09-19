@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BackImg from "../assets/images/about.jpg";
+import ChefImg from "../assets/images/others/chefs.png";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,7 +74,7 @@ const About = () => {
   return (
     <div
       id="about-section"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 m-8 rounded-[70px] shadow-2xl"
     >
       {/* Animated Background Elements */}
       {[...Array(6)].map((_, i) => (
@@ -116,7 +118,21 @@ const About = () => {
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-8 lg:px-16 py-20">
-        <div className="max-w-7xl mx-auto">
+        {/* Background - Fixed the image reference */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
+          <div
+            className="absolute inset-0 opacity-100 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${BackImg})`,
+            }}
+          />
+        </motion.div>
+        <div className="max-w-7xl mx-auto z-30">
           {/* Section Header */}
           <motion.div
             className="text-center mb-16"
@@ -144,7 +160,7 @@ const About = () => {
             >
               About{" "}
               <motion.span
-                className="text-purple-500"
+                className="text-[#60a5fa]"
                 animate={{
                   textShadow: [
                     "0 0 10px rgba(168,85,247,0.3)",
@@ -235,7 +251,7 @@ const About = () => {
               animate={isVisible ? "visible" : "hidden"}
             >
               <motion.div
-                className="relative w-96 h-96 lg:w-[450px] lg:h-[450px]"
+                className="relative w-96 h-96 lg:w-[550px] lg:h-[550px]"
                 variants={floatingVariants}
                 animate="animate"
               >
@@ -253,29 +269,17 @@ const About = () => {
                 />
 
                 {/* Inner content circle */}
-                <div className="absolute inset-8 bg-white/90 backdrop-blur-sm rounded-full flex flex-col items-center justify-center shadow-lg border border-purple-100">
-                  <motion.div
-                    className="text-6xl mb-4"
+                <div className="absolute inset-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-purple-100 overflow-hidden">
+                  <motion.img
+                    src={ChefImg} // replace with your image path
+                    alt="Dessert"
+                    className="w-full h-full object-cover rounded-full"
                     animate={{
-                      scale: [1, 1.2, 1],
+                      scale: [1, 1.05, 1],
                       rotate: [0, 5, -5, 0],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    🍦🧁🍰
-                  </motion.div>
-                  <motion.h3
-                    className="text-2xl font-bold text-purple-600 mb-2 text-center"
-                    animate={{ opacity: [0.7, 1, 0.7] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    Since 2020
-                  </motion.h3>
-                  <p className="text-gray-600 text-center text-sm">
-                    Serving happiness
-                    <br />
-                    in every bite
-                  </p>
+                  />
                 </div>
 
                 {/* Floating dessert icons */}
@@ -324,26 +328,6 @@ const About = () => {
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Call to Action */}
-          <motion.div
-            className="text-center mt-16"
-            initial={{ y: 50, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 1.5, duration: 0.8 }}
-          >
-            <motion.button
-              className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-all text-lg"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 15px 30px rgba(168,85,247,0.3)",
-                y: -3,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Join Our Sweet Journey 🌟
-            </motion.button>
-          </motion.div>
         </div>
       </div>
 

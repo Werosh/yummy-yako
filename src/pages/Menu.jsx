@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BackImg from "../assets/images/Image_fx-back.png";
 
 const Menu = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
@@ -24,131 +24,41 @@ const Menu = () => {
     return () => observer.disconnect();
   }, []);
 
-  const menuItems = [
+  const featuredItems = [
     {
       id: 1,
       name: "Rainbow Ice Cream Cone",
-      category: "ice-cream",
       price: "$4.50",
       description:
-        "Three scoops of our signature flavors - vanilla, strawberry, and mint chocolate chip, served in a crispy waffle cone.",
+        "Three magical scoops of our signature flavors - creamy vanilla, sweet strawberry, and refreshing mint chocolate chip, all perfectly nestled in a golden crispy waffle cone.",
       image:
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop&crop=center",
-      popular: true,
+        "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=600&fit=crop&crop=center",
       emoji: "🍦",
+      color: "from-pink-400 to-purple-500",
     },
     {
       id: 2,
-      name: "Chocolate Fudge Brownie",
-      category: "cakes",
-      price: "$3.75",
+      name: "Strawberry Cupcake Delight",
+      price: "$2.95",
       description:
-        "Rich, dense chocolate brownie topped with warm fudge sauce and a sprinkle of powdered sugar.",
+        "Fluffy cloud-like vanilla cupcake topped with silky strawberry buttercream frosting and crowned with a candied strawberry that sparkles like a jewel.",
       image:
-        "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=400&fit=crop&crop=center",
-      popular: false,
-      emoji: "🍰",
+        "https://images.unsplash.com/photo-1587668178277-295251f900ce?w=600&h=600&fit=crop&crop=center",
+      emoji: "🧁",
+      color: "from-rose-400 to-pink-500",
     },
     {
       id: 3,
-      name: "Strawberry Cupcake Delight",
-      category: "cupcakes",
-      price: "$2.95",
-      description:
-        "Fluffy vanilla cupcake with fresh strawberry buttercream frosting and a candied strawberry on top.",
-      image:
-        "https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=400&fit=crop&crop=center",
-      popular: true,
-      emoji: "🧁",
-    },
-    {
-      id: 4,
-      name: "Cookies & Cream Milkshake",
-      category: "drinks",
-      price: "$5.25",
-      description:
-        "Thick and creamy milkshake blended with vanilla ice cream and crushed chocolate cookies, topped with whipped cream.",
-      image:
-        "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop&crop=center",
-      popular: false,
-      emoji: "🥤",
-    },
-    {
-      id: 5,
-      name: "Fresh Fruit Tart",
-      category: "cakes",
-      price: "$4.25",
-      description:
-        "Buttery pastry shell filled with vanilla custard and topped with seasonal fresh fruits and a glossy glaze.",
-      image:
-        "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=400&fit=crop&crop=center",
-      popular: true,
-      emoji: "🥧",
-    },
-    {
-      id: 6,
-      name: "Cotton Candy Cloud",
-      category: "special",
-      price: "$3.50",
-      description:
-        "Fluffy pink and blue cotton candy that melts in your mouth, served in a decorative cone.",
-      image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop&crop=center",
-      popular: false,
-      emoji: "🍭",
-    },
-    {
-      id: 7,
       name: "Double Chocolate Chip Cookie",
-      category: "cookies",
       price: "$2.50",
       description:
-        "Warm, gooey chocolate chip cookie with dark and white chocolate chips, served fresh from our mobile oven.",
+        "Warm, gooey chocolate chip cookie loaded with dark and white chocolate chips, baked to golden perfection and served fresh from our mobile oven.",
       image:
-        "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=400&fit=crop&crop=center",
-      popular: true,
+        "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=600&fit=crop&crop=center",
       emoji: "🍪",
-    },
-    {
-      id: 8,
-      name: "Tropical Smoothie Bowl",
-      category: "special",
-      price: "$6.75",
-      description:
-        "Frozen smoothie bowl with mango, pineapple, and coconut, topped with granola, berries, and coconut flakes.",
-      image:
-        "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=400&fit=crop&crop=center",
-      popular: false,
-      emoji: "🥥",
-    },
-    {
-      id: 9,
-      name: "Classic Vanilla Sundae",
-      category: "ice-cream",
-      price: "$4.95",
-      description:
-        "Three scoops of premium vanilla ice cream with hot fudge, caramel sauce, whipped cream, and a cherry on top.",
-      image:
-        "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop&crop=center",
-      popular: true,
-      emoji: "🍨",
+      color: "from-amber-400 to-orange-500",
     },
   ];
-
-  const categories = [
-    { id: "all", name: "All Treats", emoji: "🍽️" },
-    { id: "ice-cream", name: "Ice Cream", emoji: "🍦" },
-    { id: "cakes", name: "Cakes & Tarts", emoji: "🍰" },
-    { id: "cupcakes", name: "Cupcakes", emoji: "🧁" },
-    { id: "cookies", name: "Cookies", emoji: "🍪" },
-    { id: "drinks", name: "Drinks", emoji: "🥤" },
-    { id: "special", name: "Specials", emoji: "✨" },
-  ];
-
-  const filteredItems =
-    selectedCategory === "all"
-      ? menuItems
-      : menuItems.filter((item) => item.category === selectedCategory);
 
   const bubbleVariants = {
     animate: {
@@ -160,16 +70,16 @@ const Menu = () => {
   };
 
   const cardVariants = {
-    hidden: { y: 80, opacity: 0, scale: 0.8 },
+    hidden: { y: 100, opacity: 0, scale: 0.8 },
     visible: (i) => ({
       y: 0,
       opacity: 1,
       scale: 1,
       transition: {
-        delay: i * 0.1,
-        duration: 0.6,
+        delay: i * 0.3,
+        duration: 0.8,
         type: "spring",
-        bounce: 0.3,
+        bounce: 0.4,
       },
     }),
   };
@@ -177,13 +87,27 @@ const Menu = () => {
   return (
     <div
       id="menu-section"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-50 via-white to-orange-50"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-50 via-white to-orange-50 m-8 rounded-[70px] shadow-2xl"
     >
+      {/* Background - Fixed the image reference */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+      >
+        <div
+          className="absolute inset-0 opacity-100 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${BackImg})`,
+          }}
+        />
+      </motion.div>
       {/* Animated Background Elements */}
-      {[...Array(10)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={`menu-bubble-${i}`}
-          className="absolute w-5 h-5 bg-pink-200 rounded-full opacity-40"
+          className="absolute w-4 h-4 bg-pink-200 rounded-full opacity-30"
           style={{
             left: `${Math.random() * 100}%`,
             bottom: `-20px`,
@@ -195,18 +119,18 @@ const Menu = () => {
       ))}
 
       {/* Food Sparkles */}
-      {[...Array(12)].map((_, i) => (
+      {[...Array(20)].map((_, i) => (
         <motion.div
           key={`menu-sparkle-${i}`}
-          className="absolute text-lg opacity-50"
+          className="absolute text-2xl opacity-40"
           style={{
             top: `${10 + Math.random() * 80}%`,
             left: `${5 + Math.random() * 90}%`,
           }}
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.4, 1],
+            opacity: [0.2, 0.6, 0.2],
           }}
           transition={{
             duration: 4 + Math.random() * 3,
@@ -215,253 +139,275 @@ const Menu = () => {
             delay: Math.random() * 4,
           }}
         >
-          {["🌟", "✨", "💫", "⭐"][Math.floor(Math.random() * 4)]}
+          {["🌟", "✨", "💫", "⭐", "🎉", "🎈"][Math.floor(Math.random() * 6)]}
         </motion.div>
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen px-8 lg:px-16 py-20">
-        <div className="max-w-7xl mx-auto">
+      <div className="relative z-10 min-h-screen px-4 lg:px-12 py-12">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12"
             initial={{ y: -60, opacity: 0 }}
             animate={isVisible ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, type: "spring", bounce: 0.3 }}
           >
             <motion.div
-              className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-8 py-3 mb-8 shadow-lg border border-pink-100"
-              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-6 py-2 mb-6 shadow-lg border border-pink-200"
+              whileHover={{ scale: 1.05, rotate: [0, 2, -2, 0] }}
               animate={isVisible ? { scale: 1 } : { scale: 0 }}
               transition={{ delay: 0.2, type: "spring" }}
             >
-              <span className="text-3xl mr-3">🍽️</span>
+              <motion.span
+                className="text-2xl mr-2"
+                animate={{
+                  rotate: [0, 10, -10, 0],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                🍽️
+              </motion.span>
               <span className="text-pink-600 font-bold text-lg">
-                Delicious Menu
+                Featured Treats
               </span>
             </motion.div>
 
             <motion.h2
-              className="text-5xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight"
+              className="text-4xl lg:text-6xl font-bold text-gray-800 mb-4 leading-tight"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Sweet{" "}
               <motion.span
-                className="text-pink-500"
+                className="text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text"
                 animate={{
-                  textShadow: [
-                    "0 0 10px rgba(236,72,153,0.3)",
-                    "0 0 20px rgba(236,72,153,0.6)",
-                    "0 0 10px rgba(236,72,153,0.3)",
-                  ],
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
-                transition={{ duration: 2.5, repeat: Infinity }}
+                transition={{ duration: 3, repeat: Infinity }}
+                style={{
+                  backgroundSize: "200% auto",
+                }}
               >
-                Treats
+                Dreams
               </motion.span>
             </motion.h2>
 
             <motion.p
-              className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
               initial={{ y: 30, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              Handcrafted desserts made with love and the finest ingredients
+              Handcrafted with love, served with smiles ✨
             </motion.p>
           </motion.div>
 
-          {/* Category Filter */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-12"
-            initial={{ y: 40, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? "bg-pink-500 text-white shadow-lg"
-                    : "bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-pink-100 border border-pink-100"
+          {/* Featured Items */}
+          <div className="space-y-12">
+            {featuredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                className={`flex flex-col lg:flex-row items-center gap-8 ${
+                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <span className="mr-2">{category.emoji}</span>
-                {category.name}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Menu Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-              key={selectedCategory}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {filteredItems.map((item, index) => (
+                {/* Image Section */}
                 <motion.div
-                  key={item.id}
-                  custom={index}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden shadow-lg border border-pink-100 hover:shadow-xl transition-all duration-300"
-                  whileHover={{
-                    scale: 1.02,
-                    y: -8,
-                    boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
-                  }}
+                  className="flex-1 relative"
                   onMouseEnter={() => setHoveredItem(item.id)}
                   onMouseLeave={() => setHoveredItem(null)}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  {/* Popular Badge */}
-                  {item.popular && (
+                  <motion.div
+                    className="relative rounded-3xl overflow-hidden shadow-2xl"
+                    animate={{
+                      boxShadow:
+                        hoveredItem === item.id
+                          ? "0 30px 60px rgba(0,0,0,0.25)"
+                          : "0 20px 40px rgba(0,0,0,0.15)",
+                    }}
+                  >
                     <motion.div
-                      className="absolute top-4 right-4 z-10 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                    >
-                      Popular ⭐
-                    </motion.div>
-                  )}
+                      className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-20 z-10`}
+                      animate={{
+                        opacity: hoveredItem === item.id ? 0.4 : 0.2,
+                      }}
+                    />
 
-                  {/* Image */}
-                  <div className="relative h-64 overflow-hidden">
                     <motion.img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: hoveredItem === item.id ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      className="absolute bottom-4 right-4 text-4xl"
+                      className="w-full h-64 lg:h-80 object-cover"
                       animate={{
-                        rotate: hoveredItem === item.id ? [0, 10, -10, 0] : 0,
-                        scale: hoveredItem === item.id ? 1.2 : 1,
+                        scale: hoveredItem === item.id ? 1.1 : 1,
                       }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.6 }}
+                    />
+
+                    {/* Floating Emoji */}
+                    <motion.div
+                      className="absolute top-4 right-4 text-4xl z-20"
+                      animate={{
+                        rotate: hoveredItem === item.id ? [0, 15, -15, 0] : 0,
+                        scale: hoveredItem === item.id ? [1, 1.2, 1] : 1,
+                        y: hoveredItem === item.id ? [0, -5, 0] : 0,
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: hoveredItem === item.id ? Infinity : 0,
+                      }}
                     >
                       {item.emoji}
                     </motion.div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-3">
-                      <motion.h3
-                        className="text-xl font-bold text-gray-800"
-                        animate={{
-                          color:
-                            hoveredItem === item.id ? "#ec4899" : "#1f2937",
-                        }}
-                      >
-                        {item.name}
-                      </motion.h3>
-                      <motion.span
-                        className="text-2xl font-bold text-pink-500"
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        {item.price}
-                      </motion.span>
-                    </div>
-
-                    <motion.p
-                      className="text-gray-600 text-sm leading-relaxed mb-4"
-                      animate={{
-                        opacity: hoveredItem === item.id ? 1 : 0.8,
-                      }}
-                    >
-                      {item.description}
-                    </motion.p>
-
-                    <motion.button
-                      className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300"
-                      whileHover={{
-                        scale: 1.02,
-                        boxShadow: "0 8px 20px rgba(236,72,153,0.3)",
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Add to Order 🛒
-                    </motion.button>
-                  </div>
+                    {/* Sparkle Effect */}
+                    <AnimatePresence>
+                      {hoveredItem === item.id && (
+                        <>
+                          {[...Array(6)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute text-2xl z-30"
+                              style={{
+                                top: `${20 + Math.random() * 60}%`,
+                                left: `${10 + Math.random() * 80}%`,
+                              }}
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{
+                                scale: [0, 1, 0],
+                                opacity: [0, 1, 0],
+                                rotate: [0, 180, 360],
+                              }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              transition={{
+                                duration: 2,
+                                delay: i * 0.2,
+                                repeat: Infinity,
+                              }}
+                            >
+                              ✨
+                            </motion.div>
+                          ))}
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
                 </motion.div>
+
+                {/* Content Section */}
+                <motion.div
+                  className="flex-1 space-y-4"
+                  animate={{
+                    x: hoveredItem === item.id ? (index % 2 === 0 ? 5 : -5) : 0,
+                  }}
+                >
+                  <motion.div
+                    className="space-y-3"
+                    animate={{
+                      scale: hoveredItem === item.id ? 1.01 : 1,
+                    }}
+                  >
+                    <motion.h3
+                      className="text-2xl lg:text-3xl font-bold text-gray-800"
+                      animate={{
+                        color: hoveredItem === item.id ? "#ec4899" : "#1f2937",
+                      }}
+                    >
+                      {item.name}
+                    </motion.h3>
+
+                    <motion.div
+                      className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${item.color} text-white font-bold text-xl shadow-lg`}
+                      whileHover={{ scale: 1.1, rotate: [0, 3, -3, 0] }}
+                      animate={{
+                        boxShadow:
+                          hoveredItem === item.id
+                            ? "0 8px 20px rgba(236,72,153,0.4)"
+                            : "0 4px 12px rgba(236,72,153,0.2)",
+                      }}
+                    >
+                      {item.price}
+                    </motion.div>
+                  </motion.div>
+
+                  <motion.p
+                    className="text-base lg:text-lg text-gray-600 leading-relaxed"
+                    animate={{
+                      opacity: hoveredItem === item.id ? 1 : 0.8,
+                      y: hoveredItem === item.id ? -2 : 0,
+                    }}
+                  >
+                    {item.description}
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+          <div className=" flex items-center justify-center mt-10 flex-col">
+            <motion.button
+              className="items-center flex justify-center bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 hover:from-orange-500 hover:via-pink-600 hover:to-purple-700 text-white font-bold py-5 px-12 rounded-full shadow-xl text-xl"
+              whileHover={{
+                scale: 1.08,
+                boxShadow: "0 20px 40px rgba(236,72,153,0.5)",
+                y: -5,
+              }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                backgroundPosition: { duration: 3, repeat: Infinity },
+                type: "spring",
+              }}
+              style={{
+                backgroundSize: "200% auto",
+              }}
+            >
+              View Full Menu ✨
+            </motion.button>
+
+            <motion.div
+              className="flex justify-center gap-4 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2 }}
+            >
+              {["🍰", "🍪", "🧁", "🍦", "🥧"].map((emoji, i) => (
+                <motion.span
+                  key={i}
+                  className="text-3xl"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: i * 0.2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                  }}
+                >
+                  {emoji}
+                </motion.span>
               ))}
             </motion.div>
-          </AnimatePresence>
-
-          {/* Call to Action */}
-          <motion.div
-            className="text-center mt-20"
-            initial={{ y: 60, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 1.2, duration: 0.8 }}
-          >
-            <motion.div
-              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-pink-100 max-w-2xl mx-auto"
-              whileHover={{ scale: 1.02 }}
-            >
-              <motion.div
-                className="text-5xl mb-4"
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                🎉
-              </motion.div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Can't find your truck?
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Follow us on social media or call us to find out where we'll be
-                next!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Track Our Truck 📍
-                </motion.button>
-                <motion.button
-                  className="bg-white hover:bg-gray-50 text-pink-600 font-bold py-3 px-8 rounded-full shadow-lg border border-pink-200 transition-all"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Call Us 📞
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Top Wave Transition */}
-      <motion.div
+      {/* Decorative Wave */}
+      {/* <motion.div
         className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-purple-50 to-transparent"
         initial={{ y: -100 }}
         animate={isVisible ? { y: 0 } : {}}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.5 }}
       >
         <svg
           className="absolute top-0 left-0 right-0 w-full h-16 rotate-180"
@@ -470,7 +416,7 @@ const Menu = () => {
         >
           <motion.path
             d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill="rgba(236,72,153,0.1)"
+            fill="rgba(236,72,153,0.15)"
             animate={{
               d: [
                 "M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z",
@@ -478,10 +424,10 @@ const Menu = () => {
                 "M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z",
               ],
             }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
         </svg>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };
