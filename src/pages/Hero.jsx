@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import Background from "../assets/images/back.png";
-import Logo from "../assets/images/logos/logo.png";
+import Logo from "../assets/images/logos/Logo.png";
 
 const Hero = () => {
   // Animation variants
