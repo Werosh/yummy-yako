@@ -29,33 +29,28 @@ const DessertHero = () => {
   const featuredItems = [
     {
       id: 1,
-      name: "Artisan Gelato Tower",
-      price: "$6.50",
-      description:
-        "Premium three-scoop gelato creation with handcrafted waffle cone, featuring our signature vanilla bean, fresh strawberry, and pistachio flavors.",
+      name: "NUTELLA KNAFEH FRIED ICE CREAM",
+      price: "$14.00",
+      description: "Topped with Nutella, Oreo Crumbs & Nutella Biscuit",
       image:
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=600&fit=crop&crop=center",
-      accent: "from-emerald-400 to-teal-500",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpQP1A3J4ic5yU-FTwA-VJusm-_FYjeeaD6A&s",
     },
     {
       id: 2,
-      name: "Gourmet Cupcake Collection",
-      price: "$4.95",
-      description:
-        "Hand-piped buttercream cupcakes made with organic ingredients, topped with seasonal fruit and edible gold accents.",
+      name: "PISTACHIO KNAFEH FRIED ICE CREAM",
+      price: "$16.50",
+      description: "Topped with Pistachio Sauce & Pistachio Nuts",
       image:
-        "https://images.unsplash.com/photo-1587668178277-295251f900ce?w=600&h=600&fit=crop&crop=center",
-      accent: "from-rose-400 to-pink-500",
+        "https://amiraspantry.com/wp-content/uploads/2016/06/kunafa-cups-card.jpg",
     },
     {
       id: 3,
-      name: "Artisanal Cookie Duo",
-      price: "$3.75",
+      name: "BISCOFF KNAFEH FRIED ICE CREAM",
+      price: "$14.00",
       description:
-        "Freshly baked premium cookies with Belgian chocolate chips and sea salt caramel drizzle, served warm from our mobile bakery.",
+        "Topped with Biscoff Sauce, Biscoff Crumbs & Biscoff Cream Biscuit",
       image:
-        "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&h=600&fit=crop&crop=center",
-      accent: "from-amber-400 to-orange-500",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthJyl9IXGIE8zal0XkQw7hUH4PyS18Wc1Dw&s",
     },
   ];
 
@@ -235,17 +230,9 @@ const DessertHero = () => {
                       transition={{ duration: 0.5 }}
                     />
 
-                    {/* Gradient Overlay */}
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-t ${item.accent} opacity-20`}
-                      animate={{
-                        opacity: hoveredItem === item.id ? 0.3 : 0.2,
-                      }}
-                    />
-
                     {/* Price Badge */}
                     <motion.div
-                      className={`absolute top-4 right-4 px-4 py-2 rounded-full bg-gradient-to-r ${item.accent} text-white font-bold text-lg shadow-lg`}
+                      className={`absolute top-4 right-4 px-4 py-2 rounded-full bg-[#5ce7f8] text-white font-bold text-lg shadow-lg`}
                       initial={{ scale: 0, rotate: -90 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 1.5 + index * 0.1, type: "spring" }}

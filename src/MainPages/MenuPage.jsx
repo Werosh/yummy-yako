@@ -15,48 +15,212 @@ const MenuPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = [
-    { id: "All", name: "All Desserts", icon: "🍰" },
-    { id: "Cupcakes", name: "Cupcakes", icon: "🧁" },
-    { id: "Cakes", name: "Premium Cakes", icon: "🎂" },
-    { id: "Ice Cream", name: "Ice Cream", icon: "🍦" },
+    { id: "All", name: "All Items", icon: "🍰" },
+    { id: "Knafeh", name: "Knafeh Items", icon: "🧁" },
+    { id: "Pancakes", name: "Dutch Pancakes", icon: "🥞" },
+    { id: "Extras", name: "Extras", icon: "🍓" },
   ];
 
   const menuItems = [
     {
       id: 1,
-      name: "Rainbow Velvet Cupcakes",
-      category: "Cupcakes",
-      price: "$4.50",
-      image: dessertImages.cupcake,
+      name: "Nutella Knafeh Fried Ice Cream",
+      category: "Knafeh",
+      price: "$14.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsTwfGPwodm4rkQhV4lQ3Xmlan5yBk2oCAQ&s", // replace with actual image
       description:
-        "Fluffy vanilla cupcakes with vibrant rainbow buttercream frosting, topped with edible glitter and sprinkles.",
+        "Fried ice cream topped with Nutella, Oreo crumbs & Nutella biscuit.",
+      rating: 4.9,
+      prepTime: "10 min",
+      featured: true,
+    },
+    {
+      id: 2,
+      name: "Biscoff Knafeh Fried Ice Cream",
+      category: "Knafeh",
+      price: "$14.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQN1lJRwsOPjd2-ODmbCR7AH_r83DKn0sog&s",
+      description:
+        "Fried ice cream topped with Biscoff sauce, Biscoff crumbs & Biscoff cream biscuit.",
+      rating: 4.8,
+      prepTime: "10 min",
+      featured: false,
+    },
+    {
+      id: 3,
+      name: "Pistachio Knafeh Fried Ice Cream",
+      category: "Knafeh",
+      price: "$16.50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8HuT25N3S-1YU5QClPoJ1Dka3QP_gmNR5ug&s",
+      description:
+        "Fried ice cream topped with pistachio sauce & pistachio nuts.",
+      rating: 5.0,
+      prepTime: "10 min",
+      featured: true,
+    },
+    {
+      id: 4,
+      name: "Yummys Knafeh Fried Ice Cream",
+      category: "Knafeh",
+      price: "$15.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmeFqDEZRFOvas0A-o4wYOcnrSNWPYDxEp8A&s",
+      description:
+        "Fried ice cream topped with signature sauce, Oreo crumbs & Bueno.",
+      rating: 4.7,
+      prepTime: "10 min",
+      featured: false,
+    },
+    {
+      id: 5,
+      name: "Dutch Pancakes (Choice of Sauce)",
+      category: "Pancakes",
+      price: "$10.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzIWmd7O5zeuJYfSHdoxHLuoBWQFTj-hvow&s",
+      description:
+        "Mini pancakes topped with strawberries, banana & ice cream.",
+      rating: 4.6,
+      prepTime: "12 min",
+      featured: false,
+    },
+    {
+      id: 6,
+      name: "Pistachio Dutch Pancakes",
+      category: "Pancakes",
+      price: "$12.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkmYRsoqI3gXEesy0_YJCkZBLrbvmQEAFsEg&s",
+      description:
+        "Mini pancakes topped with strawberries, banana & ice cream with pistachio drizzle.",
+      rating: 4.8,
+      prepTime: "12 min",
+      featured: true,
+    },
+    {
+      id: 7,
+      name: "Knafeh",
+      category: "Knafeh",
+      price: "$11.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_K0h5zf6s9MrV1yPQN9K8Ek3yTcx4yvVHLg&s",
+      description:
+        "Traditional homemade knafeh topped with strawberries & banana.",
       rating: 4.9,
       prepTime: "15 min",
       featured: true,
     },
     {
-      id: 2,
-      name: "Chocolate Thunder Cake",
-      category: "Cakes",
-      price: "$28.00",
-      image: dessertImages.cake,
-      description:
-        "Decadent three-layer chocolate cake with rich ganache filling and premium cocoa dusting. Serves 8-10 people.",
+      id: 8,
+      name: "Strawberry Cup",
+      category: "Extras",
+      price: "$17.00",
+      image:
+        "https://cdn.shopify.com/s/files/1/0703/4231/2189/files/9999_480x480.jpg?v=1717362152",
+      description: "Fresh strawberries served with your choice of sauce.",
+      rating: 4.7,
+      prepTime: "5 min",
+      featured: false,
+    },
+    // Extras (sauces & toppings)
+    {
+      id: 9,
+      name: "Nutella Sauce",
+      category: "Extras",
+      price: "$2.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqsbjCrahh_smX_FG7-TZ0F4Pumk-Id34wsw&s",
+      description: "Rich Nutella drizzle.",
       rating: 5.0,
-      prepTime: "25 min",
+      prepTime: "1 min",
       featured: false,
     },
     {
-      id: 3,
-      name: "Artisan Gelato Cup",
-      category: "Ice Cream",
-      price: "$6.75",
-      image: dessertImages.icecream,
-      description:
-        "Hand-crafted Italian gelato available in vanilla bean, pistachio, or salted caramel flavors with premium toppings.",
+      id: 10,
+      name: "Biscoff Sauce",
+      category: "Extras",
+      price: "$2.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRzYfexH8DNdLv786Oltg12vys-timjfMDEw&s",
+      description: "Smooth Biscoff drizzle.",
       rating: 4.8,
-      prepTime: "5 min",
-      featured: true,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 11,
+      name: "Pistachio Sauce",
+      category: "Extras",
+      price: "$3.50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRimksmw-RCJu0LRfp4CTTTxsz_Gm6e79kUlA&s",
+      description: "Creamy pistachio sauce.",
+      rating: 4.9,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 12,
+      name: "Yummys Sauce",
+      category: "Extras",
+      price: "$3.50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLPGE3whYemG3eaTCBjmkvkV52b7z2yd2UNQ&s",
+      description: "Signature house sauce.",
+      rating: 4.8,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 13,
+      name: "Strawberries",
+      category: "Extras",
+      price: "$0.50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm3jFWGKHucgSVFKi_hv9422Ee8zGKkQOdsA&s",
+      description: "Fresh strawberries topping.",
+      rating: 4.9,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 14,
+      name: "Banana",
+      category: "Extras",
+      price: "$0.50",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZlhFbIfx5hueeG21LJqj_ynf5PlUZk0F9Ww&s",
+      description: "Fresh banana slices.",
+      rating: 4.7,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 15,
+      name: "Ice Cream",
+      category: "Extras",
+      price: "$2.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbtGheck-9XK8d2SI2tuIiSh7cE3Kz-MDh1w&s",
+      description: "Vanilla ice cream scoop.",
+      rating: 5.0,
+      prepTime: "1 min",
+      featured: false,
+    },
+    {
+      id: 16,
+      name: "Pistachio Nuts",
+      category: "Extras",
+      price: "$1.00",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFfBefUAChM1lnuBfN-1f4D1h6WDO6hkh4gw&s",
+      description: "Crunchy pistachio topping.",
+      rating: 4.8,
+      prepTime: "1 min",
+      featured: false,
     },
   ];
 

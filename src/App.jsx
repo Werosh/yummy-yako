@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import Menu from "./MainPages/MenuPage";
 import Event from "./MainPages/Events";
 import Contact from "./MainPages/Contact";
+import Career from "./MainPages/Career";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/event" element={<Event />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<Career />} />
       </Routes>
       <Footer />
     </>

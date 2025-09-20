@@ -25,10 +25,14 @@ h1 {
 
 p,
 h3 {
-  font-family: "DynaPuff", cursive;
-  font-weight: 100;
+  font-family: DynaPuff;
 }
 
 button {
   cursor: pointer;
+}
+
+.font-about {
+  font-family: Chewy;
+  font-weight: 0;
 }

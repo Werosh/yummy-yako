@@ -5,6 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Chefs from "../assets/images/others/chefs.png";
 
+// You can replace these with your actual image imports
+const galleryImages = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TUxTlB2nMB0fMaaIyOUpd0Kl0kzhN9GmA&s", // Image 1
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwdSk0hrTmx-spxgBAPpDx48rsi8f-vZiTZQ&s", // Image 2 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU5I_svs_ws8uGhPMWqB6U75Nd-B-es8lz-w&s", // Image 3 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-31gVuWxy_2XnkucfaOwaliQ3ZOIWNJHYkw&s", // Image 4 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdVmU08GIaghp6NTAC_gcGEmpi3_WeovfdHQ&s", // Image 5 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzCOEciIsNnriqDSMCOD4RZZVOXJ4OTmVH3Q&s", // Image 6 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGkt-1q5zJrL24jJCOlQ3q1tMeE6UojaIQLQ&s", // Image 7 - replace with your actual image import
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh41p-IfTuYJIzUrpv3J1LfD9kKqwTETx2tA&s", // Image 8 - replace with your actual image import
+];
+
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -80,17 +92,36 @@ const About = () => {
     },
   };
 
-  // Marshmallow bounce
-  const marshmallowBounce = {
-    animate: {
+  // Image float animations
+  const imageFloat = {
+    animate: (i) => ({
       y: [0, -20, 0],
+      x: [0, 10, -10, 0],
+      rotate: [0, 3, -3, 0],
       scale: [1, 1.05, 1],
       transition: {
-        duration: 2.5,
+        duration: 3 + i * 0.5,
         repeat: Infinity,
         ease: "easeInOut",
+        delay: i * 0.3,
       },
-    },
+    }),
+  };
+
+  // Stagger animation for images
+  const imageStagger = {
+    initial: { scale: 0, opacity: 0, y: 100 },
+    animate: (i) => ({
+      scale: 1,
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 1,
+        delay: 1 + i * 0.2,
+      },
+    }),
   };
 
   return (
@@ -128,8 +159,8 @@ const About = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 200"
-          preserveAspectRatio="none" // 🔑 Forces stretching full width
-          className="w-full h-32" // Full width, fixed height
+          preserveAspectRatio="none"
+          className="w-full h-32"
         >
           <motion.path
             d="M0,0 L1200,0 L1200,60 Q1100,90 1000,70 Q900,50 800,80 Q700,110 600,75 Q500,40 400,85 Q300,130 200,80 Q100,30 0,70 Z"
@@ -162,7 +193,7 @@ const About = () => {
           >
             {/* Bubbly Title */}
             <motion.h1
-              className="text-6xl lg:text-8xl font-black text-white mb-6 leading-tight"
+              className="text-6xl lg:text-8xl font-about text-white mb-6 leading-tight font-"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{
@@ -203,146 +234,294 @@ const About = () => {
             </motion.p>
           </motion.div>
 
-          {/* Bubbly Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                icon: "🚚",
-                title: "Mobile Magic",
-                description:
-                  "Our bubbly truck brings dessert dreams to your doorstep with style!",
-              },
-              {
-                icon: "🎂",
-                title: "Handcrafted Happiness",
-                description:
-                  "Every treat is made with love and a sprinkle of magic dust!",
-              },
-              {
-                icon: "💖",
-                title: "Community Sweetness",
-                description:
-                  "We're not just a truck - we're your neighborhood happiness makers!",
-              },
-            ].map((card, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={cardBounce}
-                initial="initial"
-                animate={isVisible ? "animate" : "initial"}
-                className="relative bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-4 border-white"
-                whileHover={{
-                  scale: 1.05,
-                  rotate: 2,
-                  transition: { type: "spring", bounce: 0.4 },
-                }}
-              >
-                {/* Card Drip Effect */}
-                <div className="absolute -top-2 left-6 right-6 h-4 bg-white rounded-full shadow-lg" />
-
-                <motion.div
-                  className="text-6xl mb-6 inline-block"
-                  variants={wobble}
-                  animate="animate"
-                  transition={{ delay: index * 0.5 }}
-                >
-                  {card.icon}
-                </motion.div>
-
-                <h3 className="text-3xl font-black text-cyan-600 mb-4 leading-tight">
-                  {card.title}
-                </h3>
-
-                <p className="text-gray-700 text-lg font-semibold leading-relaxed">
-                  {card.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Center Illustration */}
-          <motion.div
-            className="flex justify-center"
-            initial={{ scale: 0, rotate: -20 }}
-            animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-            transition={{
-              delay: 1,
-              duration: 1.5,
-              type: "spring",
-              bounce: 0.5,
-            }}
-          >
-            <motion.div
-              className="relative w-80 h-80 lg:w-96 lg:h-96"
-              variants={marshmallowBounce}
-              animate="animate"
-            >
-              {/* Main Bubble */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-full shadow-2xl border-8 border-white flex items-center justify-center overflow-hidden"
-                animate={{
-                  boxShadow: [
-                    "0 20px 60px rgba(0,200,255,0.3)",
-                    "0 30px 80px rgba(0,200,255,0.5)",
-                    "0 20px 60px rgba(0,200,255,0.3)",
-                  ],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                <motion.img
-                  src={Chefs} // replace with your image path
-                  alt="Ice Cream"
-                  className="max-w-full max-h-full object-contain"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, -5, 0],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </motion.div>
-
-              {/* Center Content */}
-              {/* <div className="absolute inset-8 bg-gradient-to-br from-cyan-400 to-teal-400 rounded-full flex items-center justify-center shadow-inner">
-                <motion.img
-                  src={Chefs}
-                  alt="Ice Cream"
-                  className="w-28 h-28 lg:w-full lg:h-auto object-contain overflow-hidden bg-amber-300"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, -5, 0],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </div> */}
-
-              {/* Floating Treats */}
+          {/* Bubbly Cards Grid with Background */}
+          <div className="relative mb-16">
+            <div className="relative z-10 grid md:grid-cols-3 gap-8 p-8">
               {[
-                { emoji: "🧁", position: "top-0 left-0", delay: 0 },
-                { emoji: "🍪", position: "top-0 right-0", delay: 0.5 },
-                { emoji: "🍰", position: "bottom-0 left-0", delay: 1 },
-                { emoji: "🍭", position: "bottom-0 right-0", delay: 1.5 },
-              ].map((treat, index) => (
+                {
+                  icon: "🚚",
+                  title: "Mobile Magic",
+                  description:
+                    "Our bubbly truck brings dessert dreams to your doorstep with style!",
+                  image:
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfYvHPPyauL_F0I-s-irZaxDMCnWgh8nQh2g&s", // background image for card 1
+                },
+                {
+                  icon: "🎂",
+                  title: "Handcrafted Happiness",
+                  description:
+                    "Every treat is made with love and a sprinkle of magic dust!",
+                  image:
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeWBJDCSVNqIIPLpb0gyfvL3_CJb6ETpUQCw&s", // background image for card 2
+                },
+                {
+                  icon: "💖",
+                  title: "Community Sweetness",
+                  description:
+                    "We're not just a truck - we're your neighborhood happiness makers!",
+                  image:
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQlodnCI9z_lnes6ON9oa6bpqDPfLY3_9Zg&s", // background image for card 3
+                },
+              ].map((card, index) => (
                 <motion.div
                   key={index}
-                  className={`absolute ${treat.position} transform -translate-x-1/2 -translate-y-1/2 text-4xl bg-white rounded-full p-3 shadow-lg`}
-                  animate={{
-                    y: [0, -15, 0],
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1],
+                  custom={index}
+                  variants={cardBounce}
+                  initial="initial"
+                  animate={isVisible ? "animate" : "initial"}
+                  className="relative rounded-3xl p-8 shadow-2xl border-4 border-white overflow-hidden"
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: 2,
+                    transition: { type: "spring", bounce: 0.4 },
                   }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: treat.delay,
-                    ease: "easeInOut",
+                  style={{
+                    backgroundImage: `url(${card.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
                 >
-                  {treat.emoji}
+                  {/* Overlay for readability */}
+                  <div className="absolute inset-0 bg-white/0 backdrop-blur-sm rounded-3xl" />
+
+                  {/* Card Content */}
+                  <div className="relative z-10">
+                    <motion.div
+                      className="text-6xl mb-6 inline-block"
+                      variants={wobble}
+                      animate="animate"
+                      transition={{ delay: index * 0.5 }}
+                    >
+                      {card.icon}
+                    </motion.div>
+
+                    <h3 className="text-3xl font-black text-[#5ce7f8] mb-4 leading-tight">
+                      {card.title}
+                    </h3>
+
+                    <p className="text-gray-200 text-lg font-semibold leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Continuous Slideshow Gallery */}
+          <div className="relative mt-20 overflow-hidden">
+            <motion.div
+              className="flex space-x-8"
+              animate={{
+                x: [0, -1600],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 20,
+                  ease: "linear",
+                },
+              }}
+              style={{ width: "3200px" }}
+            >
+              {/* First Set of Images */}
+              {galleryImages.map((imageSrc, index) => (
+                <motion.div
+                  key={`slide-${index}`}
+                  className="relative flex-shrink-0"
+                  custom={index}
+                  variants={imageFloat}
+                  animate="animate"
+                >
+                  <div
+                    className={`
+                      ${index % 3 === 0 ? "w-80 h-64" : ""}
+                      ${index % 3 === 1 ? "w-64 h-80" : ""}
+                      ${index % 3 === 2 ? "w-72 h-56" : ""}
+                    `}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
+                      <img
+                        src={imageSrc}
+                        alt={`Gallery Image ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+
+                      {/* Dynamic decorations based on image size */}
+                      {index % 3 === 0 && (
+                        <div className="absolute top-4 right-4">
+                          <motion.div
+                            className="text-3xl"
+                            animate={{ rotate: [0, 360] }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              delay: index * 0.3,
+                            }}
+                          >
+                            ✨
+                          </motion.div>
+                        </div>
+                      )}
+
+                      {index % 3 === 1 && (
+                        <>
+                          <motion.div
+                            className="absolute top-3 left-3 text-2xl bg-white rounded-full p-2 shadow-lg"
+                            animate={{
+                              y: [0, -10, 0],
+                              rotate: [0, 15, -15, 0],
+                            }}
+                            transition={{
+                              duration: 2.5,
+                              repeat: Infinity,
+                              delay: index * 0.4,
+                            }}
+                          >
+                            {
+                              ["🧁", "🍪", "🍰", "🍭", "🎂", "🍩", "🧁", "🍪"][
+                                index
+                              ]
+                            }
+                          </motion.div>
+                          <motion.div
+                            className="absolute bottom-3 right-3 text-xl"
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.6,
+                            }}
+                          >
+                            💫
+                          </motion.div>
+                        </>
+                      )}
+
+                      {index % 3 === 2 && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent flex items-end justify-center p-4">
+                          <motion.div
+                            className="text-white text-xl font-bold bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
+                            animate={{
+                              scale: [1, 1.05, 1],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.5,
+                            }}
+                          >
+                            Yako Special
+                          </motion.div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Duplicate Set for Seamless Loop */}
+              {galleryImages.map((imageSrc, index) => (
+                <motion.div
+                  key={`slide-duplicate-${index}`}
+                  className="relative flex-shrink-0"
+                  custom={index}
+                  variants={imageFloat}
+                  animate="animate"
+                >
+                  <div
+                    className={`
+                      ${index % 3 === 0 ? "w-80 h-64" : ""}
+                      ${index % 3 === 1 ? "w-64 h-80" : ""}
+                      ${index % 3 === 2 ? "w-72 h-56" : ""}
+                    `}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
+                      <img
+                        src={imageSrc}
+                        alt={`Gallery Image ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+
+                      {/* Dynamic decorations based on image size */}
+                      {index % 3 === 0 && (
+                        <div className="absolute top-4 right-4">
+                          <motion.div
+                            className="text-3xl"
+                            animate={{ rotate: [0, 360] }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              delay: index * 0.3,
+                            }}
+                          >
+                            ✨
+                          </motion.div>
+                        </div>
+                      )}
+
+                      {index % 3 === 1 && (
+                        <>
+                          <motion.div
+                            className="absolute top-3 left-3 text-2xl bg-white rounded-full p-2 shadow-lg"
+                            animate={{
+                              y: [0, -10, 0],
+                              rotate: [0, 15, -15, 0],
+                            }}
+                            transition={{
+                              duration: 2.5,
+                              repeat: Infinity,
+                              delay: index * 0.4,
+                            }}
+                          >
+                            {
+                              ["🧁", "🍪", "🍰", "🍭", "🎂", "🍩", "🧁", "🍪"][
+                                index
+                              ]
+                            }
+                          </motion.div>
+                          <motion.div
+                            className="absolute bottom-3 right-3 text-xl"
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.6,
+                            }}
+                          >
+                            💫
+                          </motion.div>
+                        </>
+                      )}
+
+                      {index % 3 === 2 && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent flex items-end justify-center p-4">
+                          <motion.div
+                            className="text-white text-xl font-bold bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
+                            animate={{
+                              scale: [1, 1.05, 1],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.5,
+                            }}
+                          >
+                            Yako Special
+                          </motion.div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
-          </motion.div>
+
+            {/* Gradient fade edges for smooth appearance */}
+            <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-cyan-400 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-400 to-transparent z-10 pointer-events-none" />
+          </div>
         </div>
       </div>
 
@@ -351,8 +530,8 @@ const About = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 200"
-          preserveAspectRatio="none" // 🔑 Force full width stretch
-          className="w-full h-32 rotate-180" // Full width, rotated drip
+          preserveAspectRatio="none"
+          className="w-full h-32 rotate-180"
         >
           <motion.path
             d="M0,0 L1200,0 L1200,60 Q1100,90 1000,70 Q900,50 800,80 Q700,110 600,75 Q500,40 400,85 Q300,130 200,80 Q100,30 0,70 Z"

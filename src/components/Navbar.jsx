@@ -26,6 +26,7 @@ const Navbar = () => {
     { path: "/menu", label: "Menu", icon: Menu },
     { path: "/event", label: "Events", icon: Calendar },
     { path: "/contact", label: "Contact", icon: Phone },
+    { path: "/career", label: "Career", icon: Truck },
   ];
 
   useEffect(() => {
