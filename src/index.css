@@ -28,3 +28,7 @@ h3 {
   font-family: "DynaPuff", cursive;
   font-weight: 100;
 }
+
+button {
+  cursor: pointer;
+}

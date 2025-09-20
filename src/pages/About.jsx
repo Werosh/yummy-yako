@@ -160,24 +160,6 @@ const About = () => {
             animate={isVisible ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
           >
-            {/* Bubbly Badge */}
-            <motion.div
-              className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-8 py-4 mb-8 shadow-xl border-4 border-white"
-              variants={marshmallowBounce}
-              animate="animate"
-            >
-              <motion.span
-                className="text-4xl mr-4"
-                variants={wobble}
-                animate="animate"
-              >
-                🍭
-              </motion.span>
-              <span className="text-cyan-600 font-black text-xl tracking-wider">
-                OUR SWEET STORY
-              </span>
-            </motion.div>
-
             {/* Bubbly Title */}
             <motion.h1
               className="text-6xl lg:text-8xl font-black text-white mb-6 leading-tight"
@@ -189,25 +171,13 @@ const About = () => {
                 type: "spring",
                 bounce: 0.3,
               }}
-              style={{
-                fontFamily: "system-ui, -apple-system, sans-serif",
-                textShadow:
-                  "4px 4px 12px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2)",
-              }}
             >
               About{" "}
               <motion.span
                 className="relative inline-block"
-                animate={{
-                  textShadow: [
-                    "0 0 20px rgba(255,255,255,0.8)",
-                    "0 0 40px rgba(255,255,255,0.9)",
-                    "0 0 20px rgba(255,255,255,0.8)",
-                  ],
-                }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                Yummy Yako
+                Yako
                 {/* Sparkle effects */}
                 <motion.div
                   className="absolute -top-4 -right-4 text-3xl"

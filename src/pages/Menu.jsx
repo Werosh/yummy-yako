@@ -148,41 +148,6 @@ const DessertHero = () => {
             animate={isVisible ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, type: "spring", stiffness: 100 }}
           >
-            {/* Brand Badge */}
-            <motion.div
-              className="inline-flex items-center bg-white/95 backdrop-blur-md rounded-full px-8 py-4 mb-8 shadow-2xl border border-teal-100"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{
-                duration: 1.5,
-                type: "spring",
-                bounce: 0.6,
-                delay: 0.2,
-              }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 40px rgba(20, 184, 166, 0.2)",
-              }}
-            >
-              <motion.div
-                className="text-3xl mr-3"
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                🍰
-              </motion.div>
-              <span className="text-teal-600 font-bold text-xl tracking-wide">
-                Premium Artisan Treats
-              </span>
-            </motion.div>
-
             {/* Main Title */}
             <motion.h1
               className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-800 mb-6 leading-tight"
@@ -372,25 +337,27 @@ const DessertHero = () => {
             animate={isVisible ? { y: 0, opacity: 1 } : {}}
             transition={{ delay: 2, duration: 1 }}
           >
-            <motion.button
-              className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full shadow-2xl text-xl lg:text-2xl tracking-wide"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 25px 50px rgba(20, 184, 166, 0.4)",
-                y: -3,
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{ y: y1 }}
-            >
-              <motion.span
-                className="mr-3 text-2xl"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+            <a href="/menu">
+              <motion.button
+                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full shadow-2xl text-xl lg:text-2xl tracking-wide"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 25px 50px rgba(20, 184, 166, 0.4)",
+                  y: -3,
+                }}
+                whileTap={{ scale: 0.95 }}
+                style={{ y: y1 }}
               >
-                🍯
-              </motion.span>
-              Explore Our Full Menu
-            </motion.button>
+                <motion.span
+                  className="mr-3 text-2xl"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  🍯
+                </motion.span>
+                Explore Our Full Menu
+              </motion.button>
+            </a>
           </motion.div>
         </div>
       </div>
