@@ -1,6 +1,30 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Chewy-Regular";
+  font-family: "DynaPuff";
+  src: url("/fonts/DynaPuff-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Chewy";
   src: url("/fonts/Chewy-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "LaMonaPro";
+  src: url("/fonts/LaMonaPro-Regular.ttf") format("truetype");
+}
+
+h1 {
+  font-family: LaMonaPro;
+  font-weight: 100;
+}
+* {
+  scroll-behavior: smooth;
+}
+
+p,
+h3 {
+  font-family: "DynaPuff", cursive;
+  font-weight: 100;
 }

@@ -1,340 +1,287 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import BackImg from "../assets/images/Image_fx-back.png";
-import VanIMg from "../assets/images/others/van.png";
+import { motion } from "framer-motion";
+
+import LogoImg from "../assets/images/logos/Logo.png";
+import TruckImg from "../assets/images/others/truck.png";
 
 const Hero = () => {
-  const bubbleVariants = {
+  // Professional floating animation for elements
+  const floatingElements = {
     animate: {
-      y: [-20, -100],
-      opacity: [0.7, 0],
-      scale: [0.5, 1.2],
-      transition: { duration: 4, repeat: Infinity, ease: "easeOut" },
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [0, -10, 0],
+      y: [0, -12, 0],
       rotate: [0, 2, -2, 0],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    },
-  };
-
-  const sparkleVariants = {
-    animate: {
-      rotate: 360,
-      scale: [1, 1.3, 1],
-      opacity: [0.5, 1, 0.5],
-      transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-    },
-  };
-
-  // Animation variant for the right side image coming from far away
-  const imageFromDistanceVariants = {
-    initial: {
-      x: 500,
-      scale: 0.3,
-      opacity: 0,
-      rotateY: -45,
-    },
-    animate: {
-      x: 0,
-      scale: 1,
-      opacity: 1,
-      rotateY: 0,
       transition: {
-        delay: 2.5,
-        duration: 1.5,
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
       },
     },
   };
 
-  //     <motion.div
-  //       className="fixed inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center z-50"
-  //       exit={{ opacity: 0, scale: 0.8 }}
-  //       transition={{ duration: 0.8 }}
-  //     >
-  //       <div className="text-center">
-  //         <motion.div
-  //           className="relative mb-8"
-  //           animate={{ rotate: 360 }}
-  //           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-  //         >
-  //           <div className="w-24 h-24 border-4 border-blue-200 rounded-full"></div>
-  //           <div className="absolute top-0 left-0 w-24 h-24 border-4 border-transparent border-t-blue-400 rounded-full animate-spin"></div>
-  //         </motion.div>
+  // Smooth entrance for main content
+  const contentSlide = {
+    initial: { x: -60, opacity: 0 },
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-  //         <motion.h2
-  //           className="text-3xl font-bold text-blue-400 mb-4"
-  //           animate={{ scale: [1, 1.1, 1] }}
-  //           transition={{ duration: 1.5, repeat: Infinity }}
-  //         >
-  //           Yummy Yako
-  //         </motion.h2>
+  // Professional text reveal
+  const textReveal = {
+    initial: { y: 30, opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
-  //         <motion.div
-  //           className="flex justify-center space-x-2"
-  //           animate={{ opacity: [0.4, 1, 0.4] }}
-  //           transition={{ duration: 1.2, repeat: Infinity }}
-  //         >
-  //           {[0, 1, 2].map((i) => (
-  //             <motion.div
-  //               key={i}
-  //               className="w-3 h-3 bg-blue-400 rounded-full"
-  //               animate={{ y: [0, -10, 0] }}
-  //               transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.2 }}
-  //             />
-  //           ))}
-  //         </motion.div>
-  //       </div>
-  //     </motion.div>
-  //   );
+  // Truck entrance with professional timing
+  const truckEntrance = {
+    initial: { x: 100, opacity: 0, scale: 0.9 },
+    animate: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+        delay: 0.4,
+      },
+    },
+  };
+
+  // Cream drip reveal
+  const creamReveal = {
+    initial: { scaleY: 0, transformOrigin: "top" },
+    animate: {
+      scaleY: 1,
+      transition: {
+        duration: 1.2,
+        ease: "easeOut",
+        delay: 0.6,
+      },
+    },
+  };
 
   return (
-    <div className="relative min-h-screen overflow-hidden mr-5 ml-5 mb-8 rounded-b-[70px] shadow-lg">
-      {/* Background - Fixed the image reference */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        <div
-          className="absolute inset-0 opacity-100 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${BackImg})`,
-          }}
-        />
-      </motion.div>
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Metallic base with professional gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300"></div>
 
-      {/* Animated Bubbles */}
+      {/* Main aqua-turquoise professional background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-cyan-500 to-teal-500">
+        {/* Subtle professional texture overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-10"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(255,255,255,0.15),transparent_50%)]"></div>
+      </div>
+
+      {/* Professional floating background elements */}
       {[...Array(8)].map((_, i) => (
         <motion.div
-          key={`bubble-${i}`}
-          className="absolute w-6 h-6 bg-blue-200 rounded-full opacity-60"
-          style={{ left: `${Math.random() * 100}%`, bottom: `-24px` }}
-          variants={bubbleVariants}
-          animate="animate"
-          transition={{ delay: Math.random() * 3 }}
+          key={`bg-element-${i}`}
+          className="absolute rounded-full bg-white/20 backdrop-blur-sm"
+          style={{
+            width: `${Math.random() * 20 + 15}px`, // Smaller for mobile
+            height: `${Math.random() * 20 + 15}px`, // Smaller for mobile
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: Math.random() * 4 + 4,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+            ease: "easeInOut",
+          }}
         />
       ))}
 
-      {/* Sparkles */}
-      {/* {[...Array(6)].map((_, i) => (
+      {/* Top cream drip - professional styling */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 z-20"
+        variants={creamReveal}
+        initial="initial"
+        animate="animate"
+      >
+        <div className="h-16 sm:h-20 lg:h-24 bg-white relative">
+          <svg
+            className="absolute bottom-0 w-full h-10 sm:h-12 lg:h-16"
+            viewBox="0 0 1200 80"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0 L1200,0 L1200,15 C1150,45 1100,60 1050,55 C1000,50 950,35 900,40 C850,45 800,60 750,55 C700,50 650,35 600,40 C550,45 500,60 450,55 C400,50 350,35 300,40 C250,45 200,60 150,55 C100,50 50,35 0,40 Z"
+              fill="white"
+            />
+          </svg>
+
+          {/* Professional drip accents */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`top-drip-${i}`}
+              className="absolute bg-white rounded-full hidden sm:block"
+              style={{
+                width: `${12 + Math.random() * 8}px`,
+                height: `${20 + Math.random() * 15}px`,
+                left: `${i * 240 + Math.random() * 80 + 80}px`,
+                bottom: `-10px`,
+              }}
+              animate={{
+                y: [0, 8, 0],
+                scaleY: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 3 + i * 0.5,
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Main content container */}
+      <div className="relative z-10 min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-20 pt-20 sm:pt-24 lg:pt-32 pb-8">
+        {/* Left content - Professional layout */}
         <motion.div
-          key={`sparkle-${i}`}
-          className="absolute text-2xl"
-          style={{
-            top: `${20 + Math.random() * 60}%`,
-            left: `${10 + Math.random() * 80}%`,
-          }}
-          variants={sparkleVariants}
+          className="w-full lg:flex-1 lg:max-w-2xl order-2 lg:order-1"
+          variants={contentSlide}
+          initial="initial"
           animate="animate"
         >
-          ✨
-        </motion.div>
-      ))} */}
-
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-between px-8 lg:px-16">
-        {/* Left */}
-        <motion.div
-          className="flex-1 max-w-2xl"
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 1, type: "spring", bounce: 0.3 }}
-        >
+          {/* Professional main title */}
           <motion.div
-            className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-6 py-2 mb-6 shadow-lg border border-blue-100"
-            whileHover={{ scale: 1.05 }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.2, type: "spring" }}
+            variants={textReveal}
+            className="flex justify-center lg:justify-start mb-6 sm:mb-8 lg:mb-0"
           >
-            <span className="text-2xl mr-2">🍦</span>
-            <span className="text-blue-600 font-semibold">
-              Sweet Dreams Come True
-            </span>
+            <motion.img
+              src={LogoImg}
+              alt="Sweet Treats Logo"
+              className="w-[250px] sm:w-[300px] lg:w-[350px] xl:w-[500px] object-contain"
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
           </motion.div>
 
-          <motion.h1
-            className="text-6xl lg:text-9xl font-bold text-gray-800 mb-4 leading-tight tracking-[10px] font-[Chewy-Regular]"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-          >
-            <motion.span className="block" whileHover={{ color: "#60a5fa" }}>
-              Yummy
-            </motion.span>
-            <motion.span
-              className="block text-blue-400"
-              animate={{
-                textShadow: [
-                  "0 0 10px rgba(96,165,250,0.3)",
-                  "0 0 20px rgba(96,165,250,0.6)",
-                  "0 0 10px rgba(96,165,250,0.3)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Yako
-            </motion.span>
-          </motion.h1>
-
-          <motion.p
-            className="text-xl lg:text-2xl text-gray-600 mb-8 leading-relaxed"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.6, duration: 0.8 }}
-          >
-            Bringing you the most delicious desserts on wheels! <br />
-            <motion.span
-              className="text-blue-500 font-semibold"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Sweet treats, made with love 💙
-            </motion.span>
-          </motion.p>
-
+          {/* Professional description */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
+            className="bg-white/30 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8 lg:mb-10 shadow-xl border border-white/50 mx-auto lg:mx-0 max-w-lg lg:max-w-none"
+            variants={textReveal}
+            whileHover={{
+              scale: 1.01,
+              boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
+            }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.button
-              className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 25px rgba(96,165,250,0.3)",
-                y: -2,
-              }}
-              whileTap={{ scale: 0.95 }}
+            <p className="text-base sm:text-lg lg:text-xl text-cyan-800 font-medium leading-relaxed mb-3 sm:mb-4 text-center lg:text-left">
+              Premium artisanal desserts crafted with passion and served fresh
+              from our mobile kitchen.
+            </p>
+            <motion.p
+              className="text-sm sm:text-base lg:text-lg text-pink-600 font-semibold text-center lg:text-left"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              Find Our Truck 🚚
-            </motion.button>
-            <motion.button
-              className="bg-white/80 backdrop-blur-sm hover:bg-white text-blue-600 font-bold py-4 px-8 rounded-full shadow-lg border border-blue-100 transition-all"
-              whileHover={{ scale: 1.05, borderColor: "#60a5fa", y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Menu 📋
-            </motion.button>
+              Quality ingredients • Exceptional taste • Memorable experiences
+            </motion.p>
+          </motion.div>
+
+          {/* Professional CTA buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start"
+            variants={textReveal}
+          >
+            <a href="#location">
+              <motion.button
+                className="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 lg:px-10 rounded-full shadow-lg text-base sm:text-lg border-2 border-pink-400 w-full sm:w-auto"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                whileHover={{
+                  scale: 1.03,
+                  y: -2,
+                  boxShadow: "0 15px 35px rgba(236,72,153,0.4)",
+                  background: "linear-gradient(to right, #ec4899, #db2777)",
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                Locate Our Truck
+              </motion.button>
+            </a>
+            <a href="/menu">
+              <motion.button
+                className="bg-white/95 backdrop-blur-sm text-cyan-700 font-bold py-3 sm:py-4 px-6 sm:px-8 lg:px-10 rounded-full shadow-lg text-base sm:text-lg border-2 border-cyan-300 w-full sm:w-auto"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                whileHover={{
+                  scale: 1.03,
+                  y: -2,
+                  backgroundColor: "rgba(255,255,255,1)",
+                  borderColor: "#0891b2",
+                  color: "#0e7490",
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                Explore Menu
+              </motion.button>
+            </a>
           </motion.div>
         </motion.div>
 
-        {/* Right - Updated with animated image from distance */}
+        {/* Right side - Professional truck showcase */}
         <motion.div
-          className="flex-1 flex justify-center items-center relative"
-          variants={imageFromDistanceVariants}
+          className="w-full lg:flex-1 flex justify-center items-center relative order-1 lg:order-2 mt-20 lg:mb-0"
+          variants={truckEntrance}
           initial="initial"
           animate="animate"
         >
           <motion.div
-            className="relative w-96 h-96 lg:w-[500px] lg:h-[500px]"
-            variants={floatingVariants}
+            className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px]"
+            variants={floatingElements}
             animate="animate"
-            whileHover={{
-              scale: 1.08,
-              rotateY: 5,
-              transition: { duration: 0.3 },
-            }}
-            style={{
-              transformStyle: "preserve-3d",
-              perspective: "1000px",
-            }}
           >
-            {/* Main image container */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div className="w-full h-full rounded-3xl flex items-center justify-center overflow-hidden">
-                <img
-                  src={VanIMg}
-                  alt="Yummy Yako Dessert"
-                  className="w-full h-full object-cover rounded-3xl"
+            {/* Main professional container */}
+            <div className="w-full sm:w-[400px] lg:w-[600px] xl:w-[800px] max-w-none">
+              <div className="w-full h-full rounded-2xl flex items-center justify-center overflow-hidden relative">
+                {/* Replace emojis with your truck image */}
+                <motion.img
+                  src={TruckImg}
+                  alt="Dessert Truck"
+                  className="w-full h-full object-contain"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    y: [0, -10, 0],
+                    rotate: [0, 1, -1, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
-              </motion.div>
+              </div>
             </div>
-
-            {/* Floating decorative elements */}
-            <motion.div
-              className="absolute -top-8 -left-8 text-4xl"
-              animate={{
-                rotate: [0, 15, -15, 0],
-                y: [0, -5, 0],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              🍰
-            </motion.div>
-            <motion.div
-              className="absolute -bottom-6 -right-6 text-3xl"
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 10, 0],
-                x: [0, 5, 0],
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-            >
-              🧁
-            </motion.div>
-            <motion.div
-              className="absolute top-4 -right-8 text-3xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                rotate: [0, 20, 0],
-                y: [0, -3, 0],
-              }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
-            >
-              🍦
-            </motion.div>
-            <motion.div
-              className="absolute -left-6 top-1/2 text-2xl"
-              animate={{
-                rotate: [0, -10, 10, 0],
-                x: [0, -3, 3, 0],
-              }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-            >
-              🍩
-            </motion.div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Bottom Wave */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-100 to-transparent"
-        initial={{ y: 100 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
-        <svg
-          className="absolute bottom-0 left-0 right-0 w-full h-16"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill="rgba(96,165,250,0.1)"
-            animate={{
-              d: [
-                "M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z",
-                "M321.39,46.44c58-5.79,114.16-20.13,172-31.86,82.39-11.72,168.19-12.73,250.45,4.61C823.78,36,906.67,77,985.66,97.83c70.05,23.48,146.53,31.09,214.34,8V0H0V32.35A600.21,600.21,0,0,0,321.39,46.44Z",
-                "M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z",
-              ],
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </svg>
-      </motion.div>
     </div>
   );
 };
