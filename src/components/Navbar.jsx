@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-import logoIMG from "../assets/images/logos/Logo-black.png";
+import logoIMG from "../assets/images/logos/logo-black.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
