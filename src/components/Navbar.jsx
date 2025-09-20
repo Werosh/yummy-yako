@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { HashLink } from "react-router-hash-link";
+
 import {
   Home,
   Menu,
@@ -22,7 +24,7 @@ const Navbar = () => {
   const navItems = [
     { path: "/", label: "Home", icon: Home },
     { path: "/menu", label: "Menu", icon: Menu },
-    { path: "/events", label: "Events", icon: Calendar },
+    { path: "/event", label: "Events", icon: Calendar },
     { path: "/contact", label: "Contact", icon: Phone },
   ];
 
@@ -50,18 +52,6 @@ const Navbar = () => {
       transition: { duration: 0.3, type: "spring" },
     },
     tap: { scale: 0.95 },
-  };
-
-  const logoImageVariants = {
-    animate: {
-      rotate: [0, 5, -5, 0],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    },
-    hover: {
-      rotate: 10,
-      scale: 1.1,
-      transition: { duration: 0.3 },
-    },
   };
 
   const dripVariants = {
@@ -259,17 +249,19 @@ const Navbar = () => {
             })}
 
             {/* CTA Button */}
-            <motion.button
-              className="ml-4 bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-400 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 30px rgba(6, 182, 212, 0.3)",
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <MapPin size={18} className="mr-2" />
-              Find Us
-            </motion.button>
+            <HashLink to="/#location">
+              <motion.button
+                className="ml-4 bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-400 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 30px rgba(6, 182, 212, 0.3)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MapPin size={18} className="mr-2" />
+                Find Us
+              </motion.button>
+            </HashLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -337,15 +329,17 @@ const Navbar = () => {
                 variants={mobileItemVariants}
                 className="pt-4 border-t border-cyan-100"
               >
-                <motion.button
-                  className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-6 py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <MapPin size={20} className="mr-3" />
-                  Find Our Sweet Truck
-                </motion.button>
+                <HashLink to="/#location">
+                  <motion.button
+                    className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-6 py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <MapPin size={20} className="mr-3" />
+                    Find Our Sweet Truck
+                  </motion.button>
+                </HashLink>
               </motion.div>
             </div>
           </motion.div>

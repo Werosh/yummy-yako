@@ -14,6 +14,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import Logo from "../assets/images/logos/logo-black.png";
+
 const Footer = () => {
   const dripVariants = {
     animate: {
@@ -77,12 +79,10 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { label: "Our Sweet Story", href: "#" },
-    { label: "Dessert Menu", href: "#" },
-    { label: "Find Our Truck", href: "#" },
-    { label: "Sweet Events", href: "#" },
-    { label: "Contact Us", href: "#" },
-    { label: "Catering Services", href: "#" },
+    { label: "Dessert Menu", href: "/menu" },
+    { label: "Find Our Truck", href: "#location" },
+    { label: "Sweet Events", href: "/event" },
+    { label: "Contact Us", href: "/contact" },
   ];
 
   return (
@@ -178,47 +178,24 @@ const Footer = () => {
                 variants={bounceVariants}
                 animate="animate"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 via-teal-300 to-cyan-200 rounded-3xl flex items-center justify-center shadow-xl relative overflow-hidden">
+                <div className="w-full h-auto  rounded-3xl flex items-center justify-center  relative overflow-hidden">
+                  {/* Moving white shimmer */}
                   <motion.div
-                    className="absolute inset-0 bg-white/20 rounded-3xl"
+                    className="absolute inset-0 rounded-3xl"
                     animate={{
                       scale: [1, 1.1, 1],
                       opacity: [0.2, 0.4, 0.2],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
-                  <span className="text-3xl relative z-10">🧁</span>
+
+                  <img
+                    src={Logo}
+                    alt="Logo"
+                    className="w-full auto relative z-10 object-contain"
+                  />
                 </div>
-
-                {/* Sparkle effects */}
-                <motion.div
-                  className="absolute -top-2 -right-2 text-yellow-400"
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [0.8, 1.2, 0.8],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  ✨
-                </motion.div>
               </motion.div>
-
-              <div>
-                <motion.h3
-                  className="text-3xl font-black bg-gradient-to-r from-cyan-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
-                  variants={pulseVariants}
-                  animate="animate"
-                >
-                  Yummy Yako
-                </motion.h3>
-                <motion.p
-                  className="text-cyan-500 font-semibold text-sm tracking-wide"
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                >
-                  SWEET DREAMS ON WHEELS
-                </motion.p>
-              </div>
             </motion.div>
 
             <motion.p
@@ -282,7 +259,7 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h4
-              className="text-2xl font-bold text-gray-800 mb-8 flex items-center"
+              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
               whileHover={{ x: 5 }}
             >
               <motion.span
@@ -331,7 +308,7 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.h4
-              className="text-2xl font-bold text-gray-800 mb-8 flex items-center"
+              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
               whileHover={{ x: 5 }}
             >
               <motion.span
@@ -362,9 +339,8 @@ const Footer = () => {
                 <div>
                   <p className="text-gray-800 font-semibold mb-1">Location</p>
                   <p className="text-gray-600">
-                    Follow our social media for
-                    <br />
-                    real-time location updates!
+                    Cnr Cumberland Drive &, <br />
+                    Kurrajong Rd, Carnes Hill NSW 2170, Australia
                   </p>
                 </div>
               </motion.div>
@@ -426,7 +402,7 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.h4
-              className="text-2xl font-bold text-gray-800 mb-8 flex items-center"
+              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
               whileHover={{ x: 5 }}
             >
               <motion.span
@@ -465,61 +441,6 @@ const Footer = () => {
                 </motion.div>
               </div>
             </motion.div>
-
-            {/* Track Truck CTA */}
-            <motion.div
-              className="bg-gradient-to-br from-cyan-400 via-teal-300 to-cyan-300 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden"
-              whileHover={{
-                scale: 1.05,
-                y: -5,
-              }}
-              animate={{
-                boxShadow: [
-                  "0 10px 30px rgba(6, 182, 212, 0.2)",
-                  "0 15px 40px rgba(6, 182, 212, 0.3)",
-                  "0 10px 30px rgba(6, 182, 212, 0.2)",
-                ],
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              <motion.div
-                className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-
-              <motion.div
-                className="flex items-center justify-center mb-4"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              >
-                <Truck size={28} className="mr-3" />
-                <span className="font-black text-xl tracking-wide">
-                  FIND OUR TRUCK
-                </span>
-              </motion.div>
-
-              <p className="text-center mb-6 text-white/90 font-medium">
-                Never miss your favorite treats! Track our live location and get
-                notified when we're in your neighborhood.
-              </p>
-
-              <motion.button
-                className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-4 px-6 rounded-2xl transition-all border border-white/20"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 0 rgba(255,255,255,0.3)",
-                    "0 0 20px rgba(255,255,255,0.2)",
-                    "0 0 0 rgba(255,255,255,0.3)",
-                  ],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                🚚 TRACK NOW
-              </motion.button>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -547,14 +468,17 @@ const Footer = () => {
               >
                 <Heart size={20} className="text-red-400 fill-current" />
               </motion.div>
-              <span>and premium ingredients</span>
-              <motion.span
-                className="ml-3 text-xl"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                👨‍🍳
-              </motion.span>
+              <span>
+                in{" "}
+                <a
+                  href="https://www.nextgenwebsites.info/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold hover:underline"
+                >
+                  NextGen Websites
+                </a>
+              </span>
             </motion.div>
 
             <div className="flex items-center space-x-8 text-gray-500">
