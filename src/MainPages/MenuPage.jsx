@@ -407,10 +407,10 @@ const MenuPage = () => {
             {categories.map((category, index) => (
               <motion.button
                 key={category.id}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 font-[DynaPuff] ${
                   activeCategory === category.id
                     ? "bg-white text-cyan-700 shadow-lg"
-                    : "bg-white/30 text-white hover:bg-white/40"
+                    : "bg-white/30 text-[#015a5e] hover:bg-white/40"
                 } backdrop-blur-md border border-white/20`}
                 variants={categoryVariants}
                 whileHover={{
@@ -420,7 +420,6 @@ const MenuPage = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveCategory(category.id)}
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 <span className="mr-2">{category.icon}</span>
                 {category.name}
@@ -472,16 +471,12 @@ const MenuPage = () => {
 
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <motion.h3
-                      className="text-xl font-bold text-gray-800 leading-tight"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
+                    <motion.h3 className="text-xl font-bold text-[#015a5e] leading-tight font-[DynaPuff]">
                       {item.name}
                     </motion.h3>
                     <motion.span
-                      className="text-2xl font-bold text-cyan-600 ml-2"
+                      className="text-2xl font-bold text-[#015a5e] ml-2 font-[DynaPuff]"
                       whileHover={{ scale: 1.1 }}
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       {item.price}
                     </motion.span>
@@ -524,7 +519,7 @@ const MenuPage = () => {
                 boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
               }}
             >
-              <h3 className="text-2xl font-bold text-blue-400 mb-4">
+              <h3 className="text-2xl font-bold text-[#015a5e] mb-4">
                 Can't find what you're craving?
               </h3>
               <p className="text-blue-400 mb-6">

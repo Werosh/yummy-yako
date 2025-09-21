@@ -287,9 +287,9 @@ const DessertHero = () => {
                     }}
                   >
                     <motion.h3
-                      className="text-xl lg:text-2xl font-bold text-gray-800 mb-3"
+                      className="text-xl lg:text-2xl font-bold text-[#015a5e] mb-3"
                       animate={{
-                        color: hoveredItem === item.id ? "#0d9488" : "#1f2937",
+                        color: hoveredItem === item.id ? "#59a9af" : "#015a5e",
                       }}
                     >
                       {item.name}
@@ -326,7 +326,7 @@ const DessertHero = () => {
           >
             <a href="/menu">
               <motion.button
-                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full shadow-2xl text-xl lg:text-2xl tracking-wide"
+                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full shadow-2xl text-xl lg:text-2xl tracking-wide font-[Chewy]"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 25px 50px rgba(20, 184, 166, 0.4)",

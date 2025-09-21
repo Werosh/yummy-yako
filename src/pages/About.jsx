@@ -127,7 +127,7 @@ const About = () => {
   return (
     <div
       id="about-section"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-cyan-400 via-cyan-300 to-teal-400"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#80f7fb] via-cyan-300 to-[#55a9ac]"
     >
       {/* Metallic Base Effect */}
       <motion.div
@@ -224,7 +224,7 @@ const About = () => {
             </motion.h1>
 
             <motion.p
-              className="text-2xl lg:text-3xl text-white/90 max-w-4xl mx-auto leading-relaxed font-bold"
+              className="text-2xl lg:text-3xl text-[#015a5e]  max-w-4xl mx-auto leading-relaxed font-bold"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.6, duration: 1 }}

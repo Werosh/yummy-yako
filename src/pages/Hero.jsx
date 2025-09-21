@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import Background from "../assets/images/back.png";
-import Logo from "../assets/images/logos/Logo.png";
+import Logo from "../assets/images/logos/logo1.png";
+import Truck from "../assets/images/others/truck.png";
+import Dessert from "../assets/images/others/food3.png";
 
 const Hero = () => {
   // Animation variants
@@ -43,108 +45,97 @@ const Hero = () => {
       >
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 "></div>
-
-        {/* Gradient overlay for depth */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div> */}
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-between py-8 px-4">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-start py-4 px-4 sm:py-6 md:py-8">
         {/* Top Section - Logo */}
         <motion.div
-          className="flex-1 flex items-center justify-center pt-16"
+          className="flex items-center justify-center pt-4 mb-6 sm:pt-6 sm:mb-8 md:pt-8"
           initial="initial"
           animate="animate"
           variants={fadeInUp}
         >
-          <div className=" backdrop-blur-xs rounded-2xl p-8   max-w-2xl mt-20">
+          <div className="backdrop-blur-xs rounded-2xl p-2 max-w-xs sm:p-3 sm:max-w-sm md:p-4 md:max-w-2xl mt-16 sm:mt-24 md:mt-32">
             <div className="text-center">
-              {/* Image Section */}
               <img
-                src={Logo} // <-- Replace with your image path
-                alt="Sweet Treats"
-                className="w-full h-auto mx-auto mb-6  object-cover"
+                src={Logo}
+                alt="Yako Logo"
+                className="w-full h-auto mx-auto object-cover"
               />
             </div>
           </div>
         </motion.div>
 
-        {/* Middle Section - Button */}
+        {/* Middle Section - Two Images */}
         <motion.div
-          className="flex-shrink-0 my-5"
-          variants={scaleIn}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.button
-            className="bg-gradient-to-r from-[#80f7fb] to-[#23dfe6] text-white font-bold py-4 px-12 rounded-full shadow-2xl text-lg border-2 border-blue-100"
-            whileHover={{
-              scale: 1.05,
-              y: -3,
-              boxShadow: "0 20px 40px rgba(59,130,246,0.4)", // blue-500 glow
-              background: "linear-gradient(to right, #3b82f6, #2563eb)", // from blue-500 to blue-600
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            Find Our Truck
-          </motion.button>
-        </motion.div>
-
-        {/* Bottom Section - Three Images */}
-        {/* <motion.div
-          className="flex-1 flex items-end justify-center w-full max-w-6xl pb-8"
+          className="flex flex-col gap-6 mb-6 w-full max-w-sm sm:gap-8 sm:mb-8 sm:max-w-md md:flex-row md:gap-12 md:max-w-4xl lg:gap-52 lg:max-w-7xl"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-4xl">
-            <motion.div variants={fadeInUp} className="relative group">
-              <div className="bg-white/15 backdrop-blur-md rounded-xl overflow-hidden shadow-xl border border-white/20 aspect-square">
-                <img
-                  src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Gourmet Cupcakes"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-                  <p className="text-white font-semibold p-4 text-sm md:text-base">
-                    Gourmet Cupcakes
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+          {/* Food Truck Image */}
+          <motion.div variants={fadeInUp} className="flex-1">
+            <div className="bg-white/15 backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white relative">
+              <img
+                src={Truck}
+                alt="Photo of Food Truck"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
 
-            <motion.div variants={fadeInUp} className="relative group">
-              <div className="bg-white/15 backdrop-blur-md rounded-xl overflow-hidden shadow-xl border border-white/20 aspect-square">
-                <img
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Artisan Donuts"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-                  <p className="text-white font-semibold p-4 text-sm md:text-base">
-                    Artisan Donuts
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+          {/* Desserts Image */}
+          <motion.div variants={fadeInUp} className="flex-1">
+            <div className="bg-white/15 backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white  relative">
+              <img
+                src={Dessert}
+                alt="Photo of Desserts"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
 
-            <motion.div variants={fadeInUp} className="relative group">
-              <div className="bg-white/15 backdrop-blur-md rounded-xl overflow-hidden shadow-xl border border-white/20 aspect-square">
-                <img
-                  src="https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Premium Ice Cream"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-                  <p className="text-white font-semibold p-4 text-sm md:text-base">
-                    Premium Ice Cream
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div> */}
+        {/* Bottom Section - Three Buttons */}
+        <motion.div
+          className="flex flex-col gap-4 w-full max-w-xs sm:gap-6 sm:max-w-sm md:flex-row md:gap-12 md:max-w-2xl lg:gap-96 lg:max-w-4xl"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
+          {/* Find Us Button */}
+          <motion.div variants={scaleIn} className="flex-1">
+            <motion.button
+              className="w-full bg-gradient-to-r from-[#80f7fb] to-[#23dfe6] text-white font-bold py-2.5 px-4 rounded-full shadow-lg text-sm border-2 border-blue-100 sm:py-3 sm:px-5 sm:text-base md:px-6"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+                boxShadow: "0 15px 30px rgba(59,130,246,0.3)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              Find Us
+            </motion.button>
+          </motion.div>
+
+          {/* Our Menu Button */}
+          <motion.div variants={scaleIn} className="flex-1">
+            <motion.button
+              className="w-full bg-gradient-to-r from-[#80f7fb] to-[#23dfe6] text-white font-bold py-2.5 px-4 rounded-full shadow-lg text-sm border-2 border-blue-100 sm:py-3 sm:px-5 sm:text-base md:px-6"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+                boxShadow: "0 15px 30px rgba(59,130,246,0.3)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              Our Menu
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
         {/* Floating background elements for ambiance */}
         {[...Array(6)].map((_, i) => (

@@ -146,11 +146,9 @@ const MapPage = () => {
             variants={fadeUpVariants}
             className="text-6xl lg:text-8xl font-bold mb-6 leading-tight"
           >
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-500 to-cyan-600 bg-clip-text text-transparent">
-              Find Our
-            </span>
+            <span className="text-[#5ebbbe]">Find Our</span>
             <br />
-            <span className="text-slate-700 relative">
+            <span className="text-[#015a5e] relative">
               Sweet Spot
               {/* Decorative underline drip */}
               <motion.div
@@ -192,7 +190,7 @@ const MapPage = () => {
                 {/* Header */}
                 <div className="flex justify-between items-start mb-8">
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-800 mb-3  tracking-wider">
+                    <h3 className="text-2xl font-bold text-[#015a5e]  mb-3  tracking-wider">
                       {location.name}
                     </h3>
                     <motion.div
