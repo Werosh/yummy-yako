@@ -47,7 +47,6 @@ const EventsBlog = () => {
   const blogPosts = [
     {
       id: 1,
-      category: "weddings",
       title: "Making Wedding Dreams Come True on Wheels",
       subtitle: "Sweet Endings for Your Perfect Day",
       excerpt:
@@ -71,7 +70,6 @@ const EventsBlog = () => {
     },
     {
       id: 2,
-      category: "corporate",
       title: "Sweetening the Corporate Experience",
       subtitle: "Team Building Through Shared Treats",
       excerpt:
@@ -95,7 +93,6 @@ const EventsBlog = () => {
     },
     {
       id: 3,
-      category: "private",
       title: "Private Parties Made Extraordinary",
       subtitle: "Celebrating Life's Special Moments",
       excerpt:
@@ -119,7 +116,6 @@ const EventsBlog = () => {
     },
     {
       id: 4,
-      category: "festivals",
       title: "Festival Favorites and Street Food Magic",
       subtitle: "Where Food Trucks Belong",
       excerpt:
@@ -143,7 +139,6 @@ const EventsBlog = () => {
     },
     {
       id: 5,
-      category: "community",
       title: "Building Community One Scoop at a Time",
       subtitle: "Neighborhood Connections and Local Love",
       excerpt:
@@ -167,7 +162,6 @@ const EventsBlog = () => {
     },
     {
       id: 6,
-      category: "seasonal",
       title: "Seasonal Celebrations and Holiday Magic",
       subtitle: "Sweet Traditions for Every Season",
       excerpt:
@@ -190,21 +184,6 @@ const EventsBlog = () => {
       stats: { events: "150+", guests: "18000+", satisfaction: "98%" },
     },
   ];
-
-  const categories = [
-    { id: "all", label: "All Stories", icon: Camera },
-    { id: "weddings", label: "Weddings", icon: Heart },
-    { id: "corporate", label: "Corporate", icon: Building },
-    { id: "private", label: "Private Parties", icon: Gift },
-    { id: "festivals", label: "Festivals", icon: PartyPopper },
-    { id: "community", label: "Community", icon: Home },
-    { id: "seasonal", label: "Seasonal", icon: Sparkles },
-  ];
-
-  const filteredPosts =
-    selectedCategory === "all"
-      ? blogPosts
-      : blogPosts.filter((post) => post.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-cyan-50 to-teal-50 relative overflow-hidden">
@@ -309,39 +288,11 @@ const EventsBlog = () => {
           </motion.div>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 mb-16"
-        >
-          {categories.map((category) => {
-            const IconComponent = category.icon;
-            return (
-              <motion.button
-                key={category.id}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-full font-bold transition-all duration-300 shadow-lg ${
-                  selectedCategory === category.id
-                    ? "bg-gradient-to-r from-cyan-500 to-teal-500 text-white shadow-cyan-500/30"
-                    : "bg-white text-gray-700 hover:bg-cyan-50 border border-cyan-200 hover:border-cyan-300"
-                }`}
-              >
-                <IconComponent className="w-5 h-5" />
-                {category.label}
-              </motion.button>
-            );
-          })}
-        </motion.div>
-
         {/* Blog Posts Grid */}
-        <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20"
-        >
-          {filteredPosts.map((post, index) => {
+        <motion.div variants={containerVariants} className="space-y-16 mb-20">
+          {blogPosts.map((post, index) => {
             const IconComponent = post.icon;
+            const isEven = index % 2 === 0;
             return (
               <motion.article
                 key={post.id}
@@ -349,92 +300,60 @@ const EventsBlog = () => {
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-cyan-100"
               >
-                {/* Featured Image */}
-                <div className="relative h-80 overflow-hidden">
-                  <img
-                    src={post.images[0]}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                  {/* Category Badge */}
+                <div
+                  className={`grid grid-cols-1 lg:grid-cols-2 ${
+                    isEven ? "" : "lg:grid-flow-col-dense"
+                  }`}
+                >
+                  {/* Image Section */}
                   <div
-                    className={`absolute top-6 left-6 px-4 py-2 rounded-full bg-gradient-to-r ${post.color} text-white font-bold text-sm flex items-center gap-2`}
+                    className={`relative h-80 lg:h-96 overflow-hidden ${
+                      isEven ? "" : "lg:col-start-2"
+                    }`}
                   >
-                    <IconComponent className="w-4 h-4" />
-                    {post.category.charAt(0).toUpperCase() +
-                      post.category.slice(1)}
-                  </div>
+                    <img
+                      src={post.images[0]}
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
-                  {/* Stats Overlay */}
-                  <div className="absolute bottom-6 right-6 text-white text-sm">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{post.stats.events} Events</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        <span>{post.stats.guests} Served</span>
-                      </div>
+                    {/* Category Badge */}
+                    <div
+                      className={`absolute top-6 left-6 px-4 py-2 rounded-full bg-gradient-to-r ${post.color} text-white font-bold text-sm flex items-center gap-2`}
+                    >
+                      <IconComponent className="w-4 h-4" />
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-8">
-                  <h2 className="text-3xl font-black text-gray-800 mb-3">
-                    {post.title}
-                  </h2>
-
-                  <p className="text-lg font-semibold text-cyan-600 mb-4">
-                    {post.subtitle}
-                  </p>
-
-                  <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Image Gallery Preview */}
-                  <div className="grid grid-cols-4 gap-2 mb-6">
-                    {post.images.slice(1, 4).map((image, idx) => (
-                      <div
-                        key={idx}
-                        className="aspect-square rounded-lg overflow-hidden"
-                      >
-                        <img
-                          src={image}
-                          alt={`${post.title} ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
-                    {post.images.length > 4 && (
-                      <div className="aspect-square rounded-lg overflow-hidden relative">
-                        <img
-                          src={post.images[4]}
-                          alt="More photos"
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                          <span className="text-white font-bold">
-                            +{post.images.length - 4}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setSelectedPost(post)}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold py-4 px-6 rounded-2xl hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  {/* Content Section */}
+                  <div
+                    className={`p-8 lg:p-12 flex flex-col justify-center ${
+                      isEven ? "" : "lg:col-start-1"
+                    }`}
                   >
-                    Read Full Story
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                    <h2 className="text-3xl lg:text-4xl font-black text-gray-800 mb-4">
+                      {post.title}
+                    </h2>
+
+                    <p className="text-lg font-semibold text-cyan-600 mb-6">
+                      {post.subtitle}
+                    </p>
+
+                    <p className="text-gray-600 leading-relaxed mb-8 text-lg">
+                      {post.excerpt}
+                    </p>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedPost(post)}
+                      className="bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-bold py-4 px-8 rounded-2xl hover:shadow-lg transition-all flex items-center justify-center gap-2 self-start"
+                    >
+                      Read Full Story
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.button>
+                  </div>
                 </div>
               </motion.article>
             );
@@ -559,8 +478,6 @@ const EventsBlog = () => {
                     className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${selectedPost.color} text-white font-bold mb-4`}
                   >
                     <selectedPost.icon className="w-4 h-4" />
-                    {selectedPost.category.charAt(0).toUpperCase() +
-                      selectedPost.category.slice(1)}
                   </div>
                   <h1 className="text-4xl font-black text-white mb-2">
                     {selectedPost.title}
