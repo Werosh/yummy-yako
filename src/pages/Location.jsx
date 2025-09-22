@@ -18,8 +18,8 @@ const MapPage = () => {
   const location = {
     id: 1,
     name: "Yummy Yako Food Truck",
-    address: "123 Rainbow Street, Sugarland District",
-    hours: "10:00 AM - 8:00 PM",
+    address: "Cnr Cumberland Drive &, Kurrajong Rd, Carnes Hill NSW 2170",
+    hours: "02:00 pM - 11:00 PM",
     phone: "(555) YUMMY-01",
     status: "Currently Here!",
     specialNote: "Fresh artisan cupcakes available now!",
@@ -84,7 +84,7 @@ const MapPage = () => {
   return (
     <div
       id="location"
-      className="min-h-screen bg-gradient-to-br from-cyan-50 to-teal-50 relative overflow-hidden"
+      className=" bg-gradient-to-br from-cyan-50 to-teal-50 relative overflow-hidden"
     >
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -147,7 +147,7 @@ const MapPage = () => {
             className="text-4xl lg:text-4xl font-bold mb-6 leading-tight"
           >
             <span className="text-[#5ebbbe]">Find Our</span>
-            <br />
+
             <span className="text-[#015a5e] relative">
               Sweet Spot
               {/* Decorative underline drip */}
@@ -161,7 +161,7 @@ const MapPage = () => {
 
           <motion.p
             variants={fadeUpVariants}
-            className="text-1xl text-slate-600 max-w-2xl mx-auto font-medium"
+            className="text-xl text-slate-600 max-w-2xl mx-auto font-medium"
           >
             Discover where artisan desserts meet culinary excellence
           </motion.p>
@@ -178,7 +178,7 @@ const MapPage = () => {
             {/* Location Information Card */}
             <motion.div variants={fadeUpVariants} className="lg:col-span-1">
               <motion.div
-                className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-100 "
+                className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-100 p-8 "
                 variants={floatingAnimation}
                 animate="animate"
                 whileHover={{
@@ -308,7 +308,7 @@ const MapPage = () => {
                 </div>
 
                 {/* Map Content */}
-                <div className="relative h-96 lg:h-[250px]">
+                <div className="relative h-96 lg:h-[370px]">
                   <AnimatePresence>
                     {!isMapLoaded && (
                       <motion.div

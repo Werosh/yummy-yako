@@ -9,7 +9,7 @@ import {
   Phone,
   X,
   AlignRight,
-  MapPin,
+  PhoneCall,
   Truck,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -120,7 +120,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/90 backdrop-blur-xl shadow-2xl border-b border-cyan-100"
-          : "bg-gradient-to-b from-white/95 to-transparent backdrop-blur-sm"
+          : "bg-gradient-to-b from-white/95 to-transparent "
       }`}
       variants={navbarVariants}
       initial="initial"
@@ -250,7 +250,7 @@ const Navbar = () => {
             })}
 
             {/* CTA Button */}
-            <HashLink to="/#location">
+            <a href="tel:+">
               <motion.button
                 className="ml-4 bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-400 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
                 whileHover={{
@@ -259,10 +259,10 @@ const Navbar = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <MapPin size={18} className="mr-2" />
-                Find Us
+                <PhoneCall size={18} className="mr-2" />
+                CALL NOW
               </motion.button>
-            </HashLink>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -330,17 +330,17 @@ const Navbar = () => {
                 variants={mobileItemVariants}
                 className="pt-4 border-t border-cyan-100"
               >
-                <HashLink to="/#location">
+                <a href="tel:+">
                   <motion.button
                     className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-6 py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setIsOpen(false)}
                   >
-                    <MapPin size={20} className="mr-3" />
+                    <PhoneCall size={20} className="mr-3" />
                     Find Our Sweet Truck
                   </motion.button>
-                </HashLink>
+                </a>
               </motion.div>
             </div>
           </motion.div>

@@ -80,49 +80,12 @@ const DessertHero = () => {
   return (
     <div
       id="hero-section"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50"
+      className="relative  overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50"
     >
       {/* Animated Background with Cream Drips */}
       <motion.div className="absolute inset-0" style={{ y: y2 }}>
         {/* Main Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-500 opacity-10" />
-
-        {/* Cream Drip Patterns */}
-        <svg
-          className="absolute top-0 left-0 w-full h-32"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d="M0,0 C150,80 350,40 600,60 C850,40 1050,80 1200,0 L1200,0 L0,0 Z"
-            fill="rgba(255, 255, 255, 0.9)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-          />
-          <motion.path
-            d="M0,20 C200,100 400,60 600,80 C800,60 1000,100 1200,20 L1200,0 L0,0 Z"
-            fill="rgba(255, 255, 255, 0.6)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.5, delay: 0.3, ease: "easeOut" }}
-          />
-        </svg>
-
-        {/* Bottom Cream Drips */}
-        <svg
-          className="absolute bottom-0 left-0 w-full h-24 rotate-180"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d="M0,0 C150,50 350,20 600,30 C850,20 1050,50 1200,0 L1200,120 L0,120 Z"
-            fill="rgba(255, 255, 255, 0.8)"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: 1, ease: "easeOut" }}
-          />
-        </svg>
       </motion.div>
 
       {/* Floating Bubbles */}
@@ -192,10 +155,13 @@ const DessertHero = () => {
             </motion.h1>
 
             <motion.p
-              className="text-1xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.9, duration: 1 }}
+              style={{
+                fontFamily: "sans-serif",
+              }}
             >
               Handcrafted gourmet desserts made with premium ingredients,
               bringing artisanal sweetness directly to your neighborhood.
@@ -309,6 +275,9 @@ const DessertHero = () => {
                       animate={{
                         opacity: hoveredItem === item.id ? 1 : 0.8,
                       }}
+                      style={{
+                        fontFamily: "sans-serif",
+                      }}
                     >
                       {item.description}
                     </motion.p>
@@ -330,20 +299,16 @@ const DessertHero = () => {
           <motion.div className="text-center mb-10">
             <a href="/menu">
               <motion.button
-                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-1 px-12 rounded-full shadow-2xl text-xl lg:text-xl tracking-wide font-mono mt-5"
+                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-1 px-12 rounded-full shadow-2xl text-xl lg:text-xl  mt-15"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 25px 50px rgba(20, 184, 166, 0.4)",
                   y: -3,
                 }}
+                style={{
+                  fontFamily: "sans-serif",
+                }}
               >
-                <motion.span
-                  className="mr-3 text-2xl"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  🍯
-                </motion.span>
                 Explore Our Full Menu
               </motion.button>
             </a>

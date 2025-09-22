@@ -193,7 +193,7 @@ const About = () => {
           >
             {/* Bubbly Title */}
             <motion.h1
-              className="text-5xl lg:text-5xl font-about text-white mt-20    leading-tight  font-[SourGummy-Regular]"
+              className="text-5xl lg:text-5xl font-about text-white mt-20    leading-tight  "
               initial={{ scale: 0.5, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{
@@ -209,26 +209,18 @@ const About = () => {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 Yako
-                {/* Sparkle effects */}
-                <motion.div
-                  className="absolute -top-4 -right-4 text-3xl"
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [0.5, 1.2, 0.5],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  ✨
-                </motion.div>
               </motion.span>
             </motion.h1>
 
             <motion.p
-              className="text-xl lg:text-xl text-[#015a5e]  max-w-5xl mx-auto leading-relaxed font-bold"
+              className="text-xl lg:text-xl text-[#015a5e]  max-w-5xl mx-auto leading-relaxed font-bold font-serif"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.6, duration: 1 }}
-              style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}
+              style={{
+                textShadow: "2px 2px 8px rgba(0,0,0,0.3)",
+                fontFamily: "sans-serif",
+              }}
             >
               Spreading sweetness and smiles, one bubbly treat at a time!
             </motion.p>

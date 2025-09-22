@@ -61,7 +61,7 @@ const Hero = () => {
               <img
                 src={Logo}
                 alt="Yako Logo"
-                className="w-[450px] h-auto mx-auto object-cover"
+                className="w-[550px] h-auto mx-auto object-cover"
               />
             </div>
           </div>
@@ -69,7 +69,7 @@ const Hero = () => {
 
         {/* Middle Section - Two Images */}
         <motion.div
-          className="flex flex-col gap-6 mb-6 w-full max-w-sm sm:gap-8 sm:mb-8 sm:max-w-md md:flex-row md:gap-12 md:max-w-3xl lg:gap-52 lg:max-w-3xl"
+          className="flex flex-col gap-6 mb-6 w-full max-w-sm sm:gap-8 sm:mb-8 sm:max-w-md md:flex-row md:gap-12 md:max-w-3xl lg:gap-52 lg:max-w-4xl"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
@@ -162,6 +162,18 @@ const Hero = () => {
           />
         ))}
       </div>
+      {/* Scroll Indicator - Arrow */}
+      <motion.div
+        className="absolute bottom-9 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <motion.div
+          className="w-6 h-6 border-b-4 border-r-4 rounded-[8px] border-white rotate-45"
+          animate={{ opacity: [1, 0.5, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
     </div>
   );
 };

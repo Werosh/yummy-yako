@@ -15,7 +15,8 @@
   src: url("/fonts/SourGummy-Regular.ttf") format("truetype");
 }
 
-h1 {
+h1,
+h3 {
   font-family: SourGummy-Regular;
   font-weight: 900;
 }
@@ -23,16 +24,12 @@ h1 {
   scroll-behavior: smooth;
 }
 
-p,
-h3 {
-  font-family: DynaPuff;
-}
-
 button {
   cursor: pointer;
 }
 
-.font-about {
-  font-family: Chewy;
+.font-about,
+p {
+  font-family: SourGummy-Regular;
   font-weight: 0;
 }

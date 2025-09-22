@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Background from "../assets/images/back.png";
 
 import {
   User,
@@ -121,11 +122,19 @@ const Career = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Professional aqua-turquoise background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cyan-400 via-cyan-500 to-transparent">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-10"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(255,255,255,0.15),transparent_50%)]"></div>
+      {/* Background Section with Image */}
+      <div className="absolute inset-0">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center min-h-screen"
+          style={{
+            backgroundImage: `url('${Background}')`,
+          }}
+        ></div>
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-400/10 via-cyan-500/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       </div>
 
       {/* Professional floating background elements */}
@@ -181,7 +190,7 @@ const Career = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6"
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold text-[#80f7fb] mb-6"
               animate={{
                 scale: [1, 1.02, 1],
               }}
@@ -193,15 +202,6 @@ const Career = () => {
             >
               Join Our Team
             </motion.h1>
-            <motion.p
-              className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              Be part of something sweet! Join Yako and help us create amazing
-              dessert experiences for our customers.
-            </motion.p>
           </motion.div>
 
           {/* Why Join Us Cards */}
@@ -265,7 +265,7 @@ const Career = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Company Info Section */}
             <motion.div
-              className="bg-white/95 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50"
+              className="bg-white/95 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50 max-h-[700px]"
               variants={itemVariants}
               initial="hidden"
               animate="visible"

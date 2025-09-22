@@ -265,7 +265,7 @@ const Footer = () => {
                   <p className="text-gray-800  mb-1">Location</p>
                   <p className="text-gray-600">
                     Cnr Cumberland Drive &, <br />
-                    Kurrajong Rd, Carnes Hill NSW 2170, Australia
+                    Kurrajong Rd, Carnes Hill NSW 2170
                   </p>
                 </div>
               </motion.div>
