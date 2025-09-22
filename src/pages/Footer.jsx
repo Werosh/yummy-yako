@@ -17,28 +17,11 @@ import {
 import Logo from "../assets/images/logos/logo-black.png";
 
 const Footer = () => {
-  const dripVariants = {
-    animate: {
-      scaleY: [1, 1.1, 1],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    },
-  };
   const bounceVariants = {
     animate: {
       y: [0, -8, 0],
       transition: {
         duration: 2.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const pulseVariants = {
-    animate: {
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 3,
         repeat: Infinity,
         ease: "easeInOut",
       },
@@ -86,38 +69,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-cyan-400 via-turquoise-400 to-teal-500 overflow-hidden py-8">
-      {/* White Dripping Cream Pattern */}
-      <div className="absolute top-0 left-0 w-full">
-        <svg
-          className="w-full h-24"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d="M0,0 C150,80 250,40 400,60 C550,80 650,40 800,50 C950,60 1050,80 1200,40 L1200,0 Z"
-            fill="white"
-            variants={dripVariants}
-            animate="animate"
-          />
-          {/* Additional drip layers */}
-          <motion.path
-            d="M0,20 C100,70 200,30 350,50 C500,70 600,30 750,40 C900,50 1000,70 1200,30 L1200,0 Z"
-            fill="rgba(255,255,255,0.8)"
-            variants={dripVariants}
-            animate="animate"
-            transition={{ delay: 0.5 }}
-          />
-          <motion.path
-            d="M0,40 C80,60 180,50 300,55 C420,60 520,50 640,52 C760,54 860,58 1200,45 L1200,0 Z"
-            fill="rgba(255,255,255,0.6)"
-            variants={dripVariants}
-            animate="animate"
-            transition={{ delay: 1 }}
-          />
-        </svg>
-      </div>
-
+    <footer className="relative bg-gradient-to-br from-cyan-400 via-turquoise-400 to-teal-500 overflow-hidden ">
       {/* Floating Dessert Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Bubble decorations */}
@@ -199,7 +151,7 @@ const Footer = () => {
             </motion.div>
 
             <motion.p
-              className="text-gray-600 leading-relaxed mb-8 text-lg"
+              className="text-gray-600 leading-relaxed mb-3 text-x1l"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -258,19 +210,6 @@ const Footer = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.h4
-              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
-              whileHover={{ x: 5 }}
-            >
-              <motion.span
-                className="mr-3 text-2xl"
-                animate={{ rotate: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                🍦
-              </motion.span>
-              Quick Links
-            </motion.h4>
             <ul className="space-y-4">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -285,7 +224,7 @@ const Footer = () => {
                     whileHover={{ x: 8 }}
                   >
                     <motion.div
-                      className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full mr-4 group-hover:scale-125 transition-transform"
+                      className="w-3 h-3 bg-gradient-to-r from-cyan-100 to-teal-100 rounded-full mr-4 group-hover:scale-125 transition-transform"
                       whileHover={{ scale: 1.3 }}
                     />
                     {link.label}
@@ -307,20 +246,6 @@ const Footer = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.h4
-              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
-              whileHover={{ x: 5 }}
-            >
-              <motion.span
-                className="mr-3 text-2xl"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                📞
-              </motion.span>
-              Get In Touch
-            </motion.h4>
-
             <div className="space-y-6">
               <motion.div
                 className="flex items-start space-x-4 group"
@@ -337,7 +262,7 @@ const Footer = () => {
                   <MapPin size={20} className="text-cyan-600" />
                 </motion.div>
                 <div>
-                  <p className="text-gray-800 font-semibold mb-1">Location</p>
+                  <p className="text-gray-800  mb-1">Location</p>
                   <p className="text-gray-600">
                     Cnr Cumberland Drive &, <br />
                     Kurrajong Rd, Carnes Hill NSW 2170, Australia
@@ -360,7 +285,7 @@ const Footer = () => {
                   <Phone size={20} className="text-cyan-600" />
                 </motion.div>
                 <div>
-                  <p className="text-gray-800 font-semibold mb-1">Call Us</p>
+                  <p className="text-gray-800  mb-1">Call Us</p>
                   <p className="text-gray-600 font-mono text-lg">
                     (555) 123-YAKO
                   </p>
@@ -385,7 +310,7 @@ const Footer = () => {
                   <Mail size={20} className="text-cyan-600" />
                 </motion.div>
                 <div>
-                  <p className="text-gray-800 font-semibold mb-1">Email Us</p>
+                  <p className="text-gray-800  mb-1">Email Us</p>
                   <p className="text-gray-600">hello@yummyyako.com</p>
                   <p className="text-sm text-gray-500">
                     Sweet inquiries welcome
@@ -401,20 +326,6 @@ const Footer = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.h4
-              className="text-2xl font-bold text-gray-100 mb-8 flex items-center"
-              whileHover={{ x: 5 }}
-            >
-              <motion.span
-                className="mr-3 text-2xl"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                ⏰
-              </motion.span>
-              Sweet Hours
-            </motion.h4>
-
             <motion.div
               className="bg-white/80 backdrop-blur-lg rounded-3xl p-6 shadow-lg border border-cyan-100/50 mb-8"
               whileHover={{ scale: 1.02, y: -5 }}
@@ -422,23 +333,33 @@ const Footer = () => {
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-800">
-                    Monday - Friday
-                  </span>
-                  <span className="text-gray-600 font-mono">11AM - 8PM</span>
+                  <span className="font-semibold text-gray-800">Monday</span>
+                  <span className="text-gray-600 font-mono">Closed</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-800">Weekends</span>
-                  <span className="text-gray-600 font-mono">10AM - 9PM</span>
+                  <span className="font-semibold text-gray-800">Tuesday</span>
+                  <span className="text-gray-600 font-mono">Closed</span>
                 </div>
-                <motion.div
-                  className="flex items-center justify-center text-green-600 font-bold bg-green-50 rounded-2xl py-2"
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Clock size={18} className="mr-2" />
-                  Currently Open!
-                </motion.div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-gray-800">Wednesday</span>
+                  <span className="text-gray-600 font-mono">2PM – 11PM</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-gray-800">Thursday</span>
+                  <span className="text-gray-600 font-mono">2PM – 11PM</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-gray-800">Friday</span>
+                  <span className="text-gray-600 font-mono">2PM – 11PM</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-gray-800">Saturday</span>
+                  <span className="text-gray-600 font-mono">2PM – 11PM</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-gray-800">Sunday</span>
+                  <span className="text-gray-600 font-mono">2PM – 11PM</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -446,14 +367,14 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <motion.div
-          className="border-t border-cyan-100/50 pt-8"
+          className="border-t border-cyan-100/50 "
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
             <motion.div
-              className="flex items-center text-gray-600"
+              className="flex items-center text-gray-600 my-2"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
@@ -483,7 +404,7 @@ const Footer = () => {
 
             <div className="flex items-center space-x-8 text-gray-500">
               <span className="font-medium">
-                &copy; 2024 Yummy Yako. All rights reserved.
+                &copy; 2025 Yummy Yako. All rights reserved.
               </span>
               <motion.div
                 className="flex items-center space-x-2"

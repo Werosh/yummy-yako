@@ -11,13 +11,13 @@
 }
 
 @font-face {
-  font-family: "LaMonaPro";
-  src: url("/fonts/LaMonaPro-Regular.ttf") format("truetype");
+  font-family: "SourGummy-Regular";
+  src: url("/fonts/SourGummy-Regular.ttf") format("truetype");
 }
 
 h1 {
-  font-family: LaMonaPro;
-  font-weight: 100;
+  font-family: SourGummy-Regular;
+  font-weight: 900;
 }
 * {
   scroll-behavior: smooth;

@@ -52,6 +52,15 @@ const DessertHero = () => {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthJyl9IXGIE8zal0XkQw7hUH4PyS18Wc1Dw&s",
     },
+    {
+      id: 4,
+      name: "Dutch Pancakes (Choice of Sauce)",
+      price: "$10.00",
+      description:
+        "Mini pancakes topped with strawberries, banana & ice cream.",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzIWmd7O5zeuJYfSHdoxHLuoBWQFTj-hvow&s",
+    },
   ];
 
   // Floating bubble animation
@@ -134,7 +143,7 @@ const DessertHero = () => {
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen px-6 lg:px-16 py-16">
+      <div className="relative z-10 min-h-screen px-6 lg:px-16 ">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div
@@ -145,7 +154,7 @@ const DessertHero = () => {
           >
             {/* Main Title */}
             <motion.h1
-              className="text-5xl lg:text-7xl xl:text-8xl font-black text-gray-800 mb-6 leading-tight"
+              className="text-4xl lg:text-6xl  font-black text-gray-800 mb-4 leading-tight"
               initial={{ scale: 0.3, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{
@@ -183,7 +192,7 @@ const DessertHero = () => {
             </motion.h1>
 
             <motion.p
-              className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
+              className="text-1xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.9, duration: 1 }}
@@ -194,7 +203,7 @@ const DessertHero = () => {
           </motion.div>
 
           {/* Featured Items Grid */}
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid lg:grid-cols-4 gap-8 ">
             {featuredItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -221,7 +230,7 @@ const DessertHero = () => {
                   transition={{ duration: 0.3 }}
                 >
                   {/* Image Section */}
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-44 overflow-hidden">
                     <motion.img
                       src={item.image}
                       alt={item.name}
@@ -232,7 +241,7 @@ const DessertHero = () => {
 
                     {/* Price Badge */}
                     <motion.div
-                      className={`absolute top-4 right-4 px-4 py-2 rounded-full bg-[#5ce7f8] text-white font-bold text-lg shadow-lg`}
+                      className={`absolute top-4 right-4 px-4 py-1 rounded-full bg-[#5ce7f8] text-white font-bold text-lg shadow-lg`}
                       initial={{ scale: 0, rotate: -90 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 1.5 + index * 0.1, type: "spring" }}
@@ -287,7 +296,7 @@ const DessertHero = () => {
                     }}
                   >
                     <motion.h3
-                      className="text-xl lg:text-2xl font-bold text-[#015a5e] mb-3"
+                      className="text-xl  font-bold text-[#015a5e] mb-3"
                       animate={{
                         color: hoveredItem === item.id ? "#59a9af" : "#015a5e",
                       }}
@@ -318,22 +327,15 @@ const DessertHero = () => {
           </div>
 
           {/* CTA Section */}
-          <motion.div
-            className="text-center mb-10"
-            initial={{ y: 100, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 2, duration: 1 }}
-          >
+          <motion.div className="text-center mb-10">
             <a href="/menu">
               <motion.button
-                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full shadow-2xl text-xl lg:text-2xl tracking-wide font-[Chewy]"
+                className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-1 px-12 rounded-full shadow-2xl text-xl lg:text-xl tracking-wide font-mono mt-5"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 25px 50px rgba(20, 184, 166, 0.4)",
                   y: -3,
                 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ y: y1 }}
               >
                 <motion.span
                   className="mr-3 text-2xl"

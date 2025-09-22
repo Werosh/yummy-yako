@@ -155,7 +155,7 @@ const About = () => {
       ))}
 
       {/* Cream Drips from Top */}
-      <motion.div className="absolute top-0 left-0 w-full z-10 ">
+      <motion.div className="absolute top-0 left-0 w-full z-10 min-h-screen ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 200"
@@ -182,18 +182,18 @@ const About = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-20 min-h-screen flex items-center justify-center px-6 py-20">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-20  flex items-center justify-center px-6 ">
+        <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-5"
             initial={{ y: 100, opacity: 0 }}
             animate={isVisible ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, type: "spring", bounce: 0.4 }}
           >
             {/* Bubbly Title */}
             <motion.h1
-              className="text-6xl lg:text-8xl font-about text-white mb-6 leading-tight font-"
+              className="text-5xl lg:text-5xl font-about text-white mt-20    leading-tight  font-[SourGummy-Regular]"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={isVisible ? { scale: 1, opacity: 1 } : {}}
               transition={{
@@ -224,19 +224,19 @@ const About = () => {
             </motion.h1>
 
             <motion.p
-              className="text-2xl lg:text-3xl text-[#015a5e]  max-w-4xl mx-auto leading-relaxed font-bold"
+              className="text-xl lg:text-xl text-[#015a5e]  max-w-5xl mx-auto leading-relaxed font-bold"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.6, duration: 1 }}
               style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.3)" }}
             >
-              Spreading sweetness and smiles, one bubbly treat at a time! 🎈
+              Spreading sweetness and smiles, one bubbly treat at a time!
             </motion.p>
           </motion.div>
 
           {/* Bubbly Cards Grid with Background */}
-          <div className="relative mb-16">
-            <div className="relative z-10 grid md:grid-cols-3 gap-8 p-8">
+          <div className="relative mb-10">
+            <div className="relative z-10 grid md:grid-cols-3 gap-8 ">
               {[
                 {
                   icon: "🚚",
@@ -269,7 +269,7 @@ const About = () => {
                   variants={cardBounce}
                   initial="initial"
                   animate={isVisible ? "animate" : "initial"}
-                  className="relative rounded-3xl p-8 shadow-2xl border-4 border-white overflow-hidden"
+                  className="relative rounded-3xl p-2 shadow-2xl border-4 border-white overflow-hidden"
                   whileHover={{
                     scale: 1.05,
                     rotate: 2,
@@ -287,7 +287,7 @@ const About = () => {
                   {/* Card Content */}
                   <div className="relative z-10">
                     <motion.div
-                      className="text-6xl mb-6 inline-block"
+                      className="text-4xl mb-6 inline-block"
                       variants={wobble}
                       animate="animate"
                       transition={{ delay: index * 0.5 }}
@@ -295,7 +295,7 @@ const About = () => {
                       {card.icon}
                     </motion.div>
 
-                    <h3 className="text-3xl font-black text-[#5ce7f8] mb-4 leading-tight">
+                    <h3 className="text-2xl font-black text-[#5ce7f8] leading-tight">
                       {card.title}
                     </h3>
 
@@ -307,222 +307,82 @@ const About = () => {
               ))}
             </div>
           </div>
-
-          {/* Continuous Slideshow Gallery */}
-          <div className="relative mt-20 overflow-hidden">
-            <motion.div
-              className="flex space-x-8"
-              animate={{
-                x: [0, -1600],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 20,
-                  ease: "linear",
-                },
-              }}
-              style={{ width: "3200px" }}
-            >
-              {/* First Set of Images */}
-              {galleryImages.map((imageSrc, index) => (
-                <motion.div
-                  key={`slide-${index}`}
-                  className="relative flex-shrink-0"
-                  custom={index}
-                  variants={imageFloat}
-                  animate="animate"
-                >
-                  <div
-                    className={`
-                      ${index % 3 === 0 ? "w-80 h-64" : ""}
-                      ${index % 3 === 1 ? "w-64 h-80" : ""}
-                      ${index % 3 === 2 ? "w-72 h-56" : ""}
-                    `}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
-                      <img
-                        src={imageSrc}
-                        alt={`Gallery Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {/* Dynamic decorations based on image size */}
-                      {index % 3 === 0 && (
-                        <div className="absolute top-4 right-4">
-                          <motion.div
-                            className="text-3xl"
-                            animate={{ rotate: [0, 360] }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              delay: index * 0.3,
-                            }}
-                          >
-                            ✨
-                          </motion.div>
-                        </div>
-                      )}
-
-                      {index % 3 === 1 && (
-                        <>
-                          <motion.div
-                            className="absolute top-3 left-3 text-2xl bg-white rounded-full p-2 shadow-lg"
-                            animate={{
-                              y: [0, -10, 0],
-                              rotate: [0, 15, -15, 0],
-                            }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              delay: index * 0.4,
-                            }}
-                          >
-                            {
-                              ["🧁", "🍪", "🍰", "🍭", "🎂", "🍩", "🧁", "🍪"][
-                                index
-                              ]
-                            }
-                          </motion.div>
-                          <motion.div
-                            className="absolute bottom-3 right-3 text-xl"
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.6,
-                            }}
-                          >
-                            💫
-                          </motion.div>
-                        </>
-                      )}
-
-                      {index % 3 === 2 && (
-                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent flex items-end justify-center p-4">
-                          <motion.div
-                            className="text-white text-xl font-bold bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
-                            animate={{
-                              scale: [1, 1.05, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                          >
-                            Yako Special
-                          </motion.div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Duplicate Set for Seamless Loop */}
-              {galleryImages.map((imageSrc, index) => (
-                <motion.div
-                  key={`slide-duplicate-${index}`}
-                  className="relative flex-shrink-0"
-                  custom={index}
-                  variants={imageFloat}
-                  animate="animate"
-                >
-                  <div
-                    className={`
-                      ${index % 3 === 0 ? "w-80 h-64" : ""}
-                      ${index % 3 === 1 ? "w-64 h-80" : ""}
-                      ${index % 3 === 2 ? "w-72 h-56" : ""}
-                    `}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
-                      <img
-                        src={imageSrc}
-                        alt={`Gallery Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {/* Dynamic decorations based on image size */}
-                      {index % 3 === 0 && (
-                        <div className="absolute top-4 right-4">
-                          <motion.div
-                            className="text-3xl"
-                            animate={{ rotate: [0, 360] }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              delay: index * 0.3,
-                            }}
-                          >
-                            ✨
-                          </motion.div>
-                        </div>
-                      )}
-
-                      {index % 3 === 1 && (
-                        <>
-                          <motion.div
-                            className="absolute top-3 left-3 text-2xl bg-white rounded-full p-2 shadow-lg"
-                            animate={{
-                              y: [0, -10, 0],
-                              rotate: [0, 15, -15, 0],
-                            }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              delay: index * 0.4,
-                            }}
-                          >
-                            {
-                              ["🧁", "🍪", "🍰", "🍭", "🎂", "🍩", "🧁", "🍪"][
-                                index
-                              ]
-                            }
-                          </motion.div>
-                          <motion.div
-                            className="absolute bottom-3 right-3 text-xl"
-                            animate={{ scale: [1, 1.3, 1] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.6,
-                            }}
-                          >
-                            💫
-                          </motion.div>
-                        </>
-                      )}
-
-                      {index % 3 === 2 && (
-                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent flex items-end justify-center p-4">
-                          <motion.div
-                            className="text-white text-xl font-bold bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
-                            animate={{
-                              scale: [1, 1.05, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                          >
-                            Yako Special
-                          </motion.div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Gradient fade edges for smooth appearance */}
-            <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-cyan-400 to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-400 to-transparent z-10 pointer-events-none" />
-          </div>
         </div>
+      </div>
+      {/* Continuous Slideshow Gallery */}
+      <div className="relative w-full overflow-hidden">
+        <motion.div
+          className="flex space-x-8 p-10 whitespace-nowrap"
+          animate={{
+            x: ["0%", "-100%"],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 20,
+              ease: "linear",
+            },
+          }}
+        >
+          {/* First Set of Images */}
+          {galleryImages.map((imageSrc, index) => (
+            <motion.div
+              key={`slide-${index}`}
+              className="relative flex-shrink-0"
+              custom={index}
+              variants={imageFloat}
+              animate="animate"
+            >
+              <div
+                className={`
+            ${index % 3 === 0 ? "w-80 h-44" : ""}
+            ${index % 3 === 1 ? "w-64 h-40" : ""}
+            ${index % 3 === 2 ? "w-72 h-46" : ""}
+          `}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
+                  <img
+                    src={imageSrc}
+                    alt={`Gallery Image ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Duplicate Set for Seamless Loop */}
+          {galleryImages.map((imageSrc, index) => (
+            <motion.div
+              key={`slide-duplicate-${index}`}
+              className="relative flex-shrink-0"
+              custom={index}
+              variants={imageFloat}
+              animate="animate"
+            >
+              <div
+                className={`
+            ${index % 3 === 0 ? "w-80 h-44" : ""}
+            ${index % 3 === 1 ? "w-64 h-40" : ""}
+            ${index % 3 === 2 ? "w-72 h-46" : ""}
+          `}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
+                  <img
+                    src={imageSrc}
+                    alt={`Gallery Image ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Gradient fade edges */}
+        <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-cyan-400 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-400 to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* Bottom Cream Drips */}

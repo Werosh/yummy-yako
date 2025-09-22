@@ -48,20 +48,20 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-start py-4 px-4 sm:py-6 md:py-8">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-start  px-4 sm:py-6 mb-5 ">
         {/* Top Section - Logo */}
         <motion.div
-          className="flex items-center justify-center pt-4 mb-6 sm:pt-6 sm:mb-8 md:pt-8"
+          className="flex items-center justify-center pt-4 mb-6 sm:pt-6 sm:mb-8 "
           initial="initial"
           animate="animate"
           variants={fadeInUp}
         >
-          <div className="backdrop-blur-xs rounded-2xl p-2 max-w-xs sm:p-3 sm:max-w-sm md:p-4 md:max-w-2xl mt-16 sm:mt-24 md:mt-32">
+          <div className=" rounded-2xl  max-w-xs sm:p-3 sm:max-w-sm  md:max-w-2xl mt-25  sm:mt-24 ">
             <div className="text-center">
               <img
                 src={Logo}
                 alt="Yako Logo"
-                className="w-full h-auto mx-auto object-cover"
+                className="w-[450px] h-auto mx-auto object-cover"
               />
             </div>
           </div>
@@ -69,14 +69,14 @@ const Hero = () => {
 
         {/* Middle Section - Two Images */}
         <motion.div
-          className="flex flex-col gap-6 mb-6 w-full max-w-sm sm:gap-8 sm:mb-8 sm:max-w-md md:flex-row md:gap-12 md:max-w-4xl lg:gap-52 lg:max-w-7xl"
+          className="flex flex-col gap-6 mb-6 w-full max-w-sm sm:gap-8 sm:mb-8 sm:max-w-md md:flex-row md:gap-12 md:max-w-3xl lg:gap-52 lg:max-w-3xl"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
           {/* Food Truck Image */}
           <motion.div variants={fadeInUp} className="flex-1">
-            <div className="bg-white/15 backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white relative">
+            <div className="bg-[#80f7fb] backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white relative">
               <img
                 src={Truck}
                 alt="Photo of Food Truck"
@@ -87,7 +87,7 @@ const Hero = () => {
 
           {/* Desserts Image */}
           <motion.div variants={fadeInUp} className="flex-1">
-            <div className="bg-white/15 backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white  relative">
+            <div className="bg-[#80f7fb] backdrop-blur-md rounded-4xl overflow-hidden shadow-xl border-3 border-white  relative">
               <img
                 src={Dessert}
                 alt="Photo of Desserts"
@@ -99,7 +99,7 @@ const Hero = () => {
 
         {/* Bottom Section - Three Buttons */}
         <motion.div
-          className="flex flex-col gap-4 w-full max-w-xs sm:gap-6 sm:max-w-sm md:flex-row md:gap-12 md:max-w-2xl lg:gap-96 lg:max-w-4xl"
+          className="flex flex-col gap-4 w-full max-w-xs sm:gap-6 sm:max-w-sm md:flex-row md:gap-12 md:max-w-2xl lg:gap-96 lg:max-w-2xl"
           variants={staggerContainer}
           initial="initial"
           animate="animate"

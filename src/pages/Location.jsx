@@ -134,7 +134,7 @@ const MapPage = () => {
         />
       </div>
 
-      <div className="relative z-20 px-6 lg:px-8 pt-16 pb-12">
+      <div className="relative z-20 px-6 lg:px-8 pt-5 ">
         {/* Header Section */}
         <motion.div
           className="text-center mb-16"
@@ -144,7 +144,7 @@ const MapPage = () => {
         >
           <motion.h1
             variants={fadeUpVariants}
-            className="text-6xl lg:text-8xl font-bold mb-6 leading-tight"
+            className="text-4xl lg:text-4xl font-bold mb-6 leading-tight"
           >
             <span className="text-[#5ebbbe]">Find Our</span>
             <br />
@@ -161,14 +161,14 @@ const MapPage = () => {
 
           <motion.p
             variants={fadeUpVariants}
-            className="text-xl text-slate-600 max-w-2xl mx-auto font-medium"
+            className="text-1xl text-slate-600 max-w-2xl mx-auto font-medium"
           >
             Discover where artisan desserts meet culinary excellence
           </motion.p>
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             className="grid lg:grid-cols-3 gap-8"
             variants={staggerContainer}
@@ -178,7 +178,7 @@ const MapPage = () => {
             {/* Location Information Card */}
             <motion.div variants={fadeUpVariants} className="lg:col-span-1">
               <motion.div
-                className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-100 p-8"
+                className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-cyan-100 "
                 variants={floatingAnimation}
                 animate="animate"
                 whileHover={{
@@ -190,7 +190,7 @@ const MapPage = () => {
                 {/* Header */}
                 <div className="flex justify-between items-start mb-8">
                   <div>
-                    <h3 className="text-2xl font-bold text-[#015a5e]  mb-3  tracking-wider">
+                    <h3 className="text-1xl font-bold text-[#015a5e]  mb-3  tracking-wider">
                       {location.name}
                     </h3>
                     <motion.div
@@ -214,12 +214,12 @@ const MapPage = () => {
                 {/* Location Details */}
                 <div className="space-y-4 mb-8">
                   <motion.div
-                    className="flex items-center bg-slate-50 rounded-xl p-4 hover:bg-slate-100 transition-colors"
+                    className="flex items-center bg-slate-50 rounded-xl p-1 hover:bg-slate-100 transition-colors"
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-lg flex items-center justify-center mr-4">
-                      <MapPin size={18} className="text-white" />
+                    <div className="w-10 h-10  rounded-lg flex items-center justify-center mr-4">
+                      <MapPin size={18} className="text-gray-600" />
                     </div>
                     <span className="text-slate-700 font-medium">
                       {location.address}
@@ -227,12 +227,12 @@ const MapPage = () => {
                   </motion.div>
 
                   <motion.div
-                    className="flex items-center bg-slate-50 rounded-xl p-4 hover:bg-slate-100 transition-colors"
+                    className="flex items-center bg-slate-50 rounded-xl p-1 hover:bg-slate-100 transition-colors"
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
-                      <Clock size={18} className="text-white" />
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-4">
+                      <Clock size={18} className="text-slate-700" />
                     </div>
                     <span className="text-slate-700 font-medium">
                       {location.hours}
@@ -240,12 +240,12 @@ const MapPage = () => {
                   </motion.div>
 
                   <motion.div
-                    className="flex items-center bg-slate-50 rounded-xl p-4 hover:bg-slate-100 transition-colors"
+                    className="flex items-center bg-slate-50 rounded-xl p-1 hover:bg-slate-100 transition-colors"
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg flex items-center justify-center mr-4">
-                      <Phone size={18} className="text-white" />
+                    <div className="w-10 h-10  rounded-lg flex items-center justify-center mr-4">
+                      <Phone size={18} className="text-slate-700" />
                     </div>
                     <span className="text-slate-700 font-medium">
                       {location.phone}
@@ -290,7 +290,7 @@ const MapPage = () => {
                   </div>
 
                   <div className="relative z-10">
-                    <h3 className="text-3xl font-bold text-white mb-2 flex items-center">
+                    <h3 className="text-2xl font-bold text-white  flex items-center">
                       <motion.span
                         className="mr-4 text-4xl"
                         animate={{ rotate: [0, 360] }}
@@ -304,25 +304,11 @@ const MapPage = () => {
                       </motion.span>
                       Interactive Location Map
                     </h3>
-                    <p className="text-cyan-100 text-lg font-medium">
-                      Premium dessert experience awaits
-                    </p>
                   </div>
-
-                  {/* Drip effect at bottom */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-8 bg-white"
-                    variants={dripAnimation}
-                    animate="animate"
-                    style={{
-                      clipPath:
-                        "polygon(0 100%, 5% 60%, 15% 80%, 25% 40%, 35% 70%, 45% 30%, 55% 60%, 65% 20%, 75% 50%, 85% 10%, 95% 40%, 100% 100%)",
-                    }}
-                  />
                 </div>
 
                 {/* Map Content */}
-                <div className="relative h-96 lg:h-[500px]">
+                <div className="relative h-96 lg:h-[250px]">
                   <AnimatePresence>
                     {!isMapLoaded && (
                       <motion.div
@@ -381,7 +367,7 @@ const MapPage = () => {
                     transition={{ duration: 0.8 }}
                   >
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4124.7167962321055!2d150.8446697!3d-33.9381045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12933b6de6cde1%3A0x64b4e543bd717b53!2sYummy%20Yako!5e1!3m2!1sen!2slk!4v1758354258262!5m2!1sen!2slk"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4124.7167962321055!2d150.8446697!3d-33.9381045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12933b6de6cde1%3A0x64b4e543bd717b53!2sYummy%20Yako!5e0!3m2!1sen!2slk!4v1758354258262!5m2!1sen!2slk"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
