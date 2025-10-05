@@ -119,7 +119,7 @@ const Navbar = () => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl shadow-2xl border-b border-cyan-100"
+          ? "bg-white/90 backdrop-blur-1xl shadow-2xl border-b border-cyan-100"
           : "bg-gradient-to-b from-white/95 to-transparent "
       }`}
       variants={navbarVariants}

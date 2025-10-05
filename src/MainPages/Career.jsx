@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import Background from "../assets/images/back.png";
 
 import {
@@ -13,6 +14,7 @@ import {
   FileText,
   Award,
   Users,
+  Upload,
 } from "lucide-react";
 
 const Career = () => {
@@ -20,36 +22,19 @@ const Career = () => {
     name: "",
     email: "",
     phone: "",
-    position: "",
-    experience: "",
-    availability: "",
-    portfolio: "",
-    resume: "",
-    coverLetter: "",
-    skills: "",
+    availability: [],
+    resumeFile: null,
     message: "",
   });
 
-  const positions = [
-    "Pastry Chef - Full Time",
-    "Assistant Chef - Part Time",
-    "Delivery Driver - Flexible Hours",
-    "Customer Service Representative - Part Time",
-    "Social Media Manager - Remote/Part Time",
-    "Kitchen Assistant - Part Time",
-    "Event Coordinator - Project Based",
-    "Quality Control Specialist - Full Time",
-    "Internship - Various Departments",
-    "Other - Please specify in message",
-  ];
-
-  const experienceLevels = [
-    "No Experience - Willing to Learn",
-    "0-1 Years Experience",
-    "1-3 Years Experience",
-    "3-5 Years Experience",
-    "5+ Years Experience",
-    "Senior Level (10+ Years)",
+  const businessHours = [
+    { day: "Monday", hours: "9 AM - 9 PM" },
+    { day: "Tuesday", hours: "9 AM - 9 PM" },
+    { day: "Wednesday", hours: "9 AM - 9 PM" },
+    { day: "Thursday", hours: "9 AM - 9 PM" },
+    { day: "Friday", hours: "9 AM - 9 PM" },
+    { day: "Saturday", hours: "9 AM - 9 PM" },
+    { day: "Sunday", hours: "9 AM - 9 PM" },
   ];
 
   const handleInputChange = (e) => {
@@ -60,28 +45,72 @@ const Career = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Career application submitted:", formData);
-    alert(
-      "Thank you for your application! We will review your information and contact you soon."
-    );
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData((prev) => ({
+      ...prev,
+      resumeFile: file,
+    }));
+  };
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      position: "",
-      experience: "",
-      availability: "",
-      portfolio: "",
-      resume: "",
-      coverLetter: "",
-      skills: "",
-      message: "",
-    });
+  const handleAvailabilityChange = (day) => {
+    setFormData((prev) => ({
+      ...prev,
+      availability: prev.availability.includes(day)
+        ? prev.availability.filter((d) => d !== day)
+        : [...prev.availability, day],
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate availability selection
+    if (formData.availability.length === 0) {
+      alert("Please select at least one available day.");
+      return;
+    }
+
+    try {
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        availability: formData.availability.join(", "),
+        message: formData.message,
+        resume_file: formData.resumeFile
+          ? formData.resumeFile.name
+          : "No file uploaded",
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        templateParams,
+        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+      );
+
+      alert(
+        "Thank you for your application! We will review your information and contact you soon."
+      );
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        availability: [],
+        resumeFile: null,
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error sending application:", error);
+      alert(
+        "There was an error submitting your application. Please try again."
+      );
+    }
   };
 
   // Animation variants
@@ -204,68 +233,11 @@ const Career = () => {
             </motion.h1>
           </motion.div>
 
-          {/* Why Join Us Cards */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              {
-                icon: Users,
-                title: "Great Team",
-                info: "Friendly Environment",
-                details: "Work with passionate people",
-              },
-              {
-                icon: Award,
-                title: "Growth",
-                info: "Career Development",
-                details: "Learn and advance with us",
-              },
-              {
-                icon: Clock,
-                title: "Flexibility",
-                info: "Work-Life Balance",
-                details: "Flexible scheduling options",
-              },
-              {
-                icon: Briefcase,
-                title: "Benefits",
-                info: "Competitive Package",
-                details: "Great perks and benefits",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/95 backdrop-blur-lg rounded-2xl p-6 text-center shadow-xl border border-white/50"
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                }}
-              >
-                <motion.div
-                  className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-full mb-4"
-                  variants={floatingVariants}
-                  animate="animate"
-                >
-                  <item.icon className="w-6 h-6" />
-                </motion.div>
-                <h3 className="font-bold text-gray-800 mb-2">{item.title}</h3>
-                <p className="text-cyan-600 font-semibold mb-1">{item.info}</p>
-                <p className="text-gray-600 text-sm">{item.details}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Company Info Section */}
+            {/* Company Info Section with Feature Cards */}
             <motion.div
-              className="bg-white/95 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50 max-h-[700px]"
+              className="bg-white/95 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50"
               variants={itemVariants}
               initial="hidden"
               animate="visible"
@@ -278,6 +250,67 @@ const Career = () => {
                 <Briefcase className="w-6 h-6 text-cyan-600 mr-2" />
                 Why Work With Yako?
               </h2>
+
+              {/* Feature Cards - Moved from top grid */}
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {[
+                  {
+                    icon: Users,
+                    title: "Great Team",
+                    info: "Friendly Environment",
+                    details: "Work with passionate people",
+                  },
+                  {
+                    icon: Award,
+                    title: "Growth",
+                    info: "Career Development",
+                    details: "Learn and advance with us",
+                  },
+                  {
+                    icon: Clock,
+                    title: "Flexibility",
+                    info: "Work-Life Balance",
+                    details: "Flexible scheduling options",
+                  },
+                  {
+                    icon: Briefcase,
+                    title: "Benefits",
+                    info: "Competitive Package",
+                    details: "Great perks and benefits",
+                  },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 text-center shadow-xl border border-white/50"
+                    variants={itemVariants}
+                    whileHover={{
+                      scale: 1.05,
+                      y: -5,
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <motion.div
+                      className="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-full mb-3"
+                      variants={floatingVariants}
+                      animate="animate"
+                    >
+                      <item.icon className="w-5 h-5" />
+                    </motion.div>
+                    <h3 className="font-bold text-gray-800 mb-1 text-sm">
+                      {item.title}
+                    </h3>
+                    <p className="text-cyan-600 font-semibold mb-1 text-xs">
+                      {item.info}
+                    </p>
+                    <p className="text-gray-600 text-xs">{item.details}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -338,21 +371,6 @@ const Career = () => {
                       and contributions are valued.
                     </p>
                   </div>
-                </div>
-
-                <div className="bg-gradient-to-r from-cyan-50 to-cyan-100 p-4 rounded-xl mt-6">
-                  <h4 className="font-semibold text-cyan-800 mb-2">
-                    Current Openings
-                  </h4>
-                  <p className="text-cyan-700 text-sm mb-2">
-                    We're actively recruiting for various positions including:
-                  </p>
-                  <ul className="text-cyan-700 text-sm space-y-1">
-                    <li>• Pastry Chef & Kitchen Staff</li>
-                    <li>• Customer Service Representatives</li>
-                    <li>• Delivery Team Members</li>
-                    <li>• Marketing & Social Media</li>
-                  </ul>
                 </div>
               </div>
             </motion.div>
@@ -424,129 +442,66 @@ const Career = () => {
                   />
                 </div>
 
-                {/* Position and Experience */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Position of Interest *
-                    </label>
-                    <select
-                      name="position"
-                      value={formData.position}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                    >
-                      <option value="">Select position</option>
-                      {positions.map((position, index) => (
-                        <option key={index} value={position}>
-                          {position}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Experience Level *
-                    </label>
-                    <select
-                      name="experience"
-                      value={formData.experience}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                    >
-                      <option value="">Select experience level</option>
-                      {experienceLevels.map((level, index) => (
-                        <option key={index} value={level}>
-                          {level}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Availability */}
+                {/* Availability Selection */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     <Clock className="w-4 h-4 inline mr-1" />
-                    Availability *
+                    Available Days *
                   </label>
-                  <select
-                    name="availability"
-                    value={formData.availability}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                  >
-                    <option value="">Select availability</option>
-                    <option value="immediate">Available Immediately</option>
-                    <option value="1week">Available in 1 week</option>
-                    <option value="2weeks">Available in 2 weeks</option>
-                    <option value="1month">Available in 1 month</option>
-                    <option value="flexible">Flexible start date</option>
-                  </select>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                    {businessHours.map((dayInfo, index) => (
+                      <motion.button
+                        key={index}
+                        type="button"
+                        onClick={() => handleAvailabilityChange(dayInfo.day)}
+                        className={`p-3 rounded-xl border-2 transition-all duration-200 text-sm font-medium ${
+                          formData.availability.includes(dayInfo.day)
+                            ? "bg-cyan-500 border-cyan-500 text-white"
+                            : "bg-white border-gray-200 text-gray-700 hover:border-cyan-300"
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className="text-center">
+                          <div className="font-semibold">{dayInfo.day}</div>
+                          <div className="text-xs opacity-75">
+                            {dayInfo.hours}
+                          </div>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                  {formData.availability.length === 0 && (
+                    <p className="text-red-500 text-sm mt-1">
+                      Please select at least one available day
+                    </p>
+                  )}
                 </div>
 
-                {/* Skills */}
+                {/* Resume File Upload */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Relevant Skills & Qualifications
+                    <Upload className="w-4 h-4 inline mr-1" />
+                    Resume/CV File *
                   </label>
-                  <textarea
-                    name="skills"
-                    value={formData.skills}
-                    onChange={handleInputChange}
-                    rows="3"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                    placeholder="List your relevant skills, certifications, and qualifications..."
-                  ></textarea>
-                </div>
-
-                {/* Resume and Portfolio Links */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Resume/CV Link
-                    </label>
+                  <div className="relative">
                     <input
-                      type="url"
-                      name="resume"
-                      value={formData.resume}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                      placeholder="https://drive.google.com/..."
+                      type="file"
+                      name="resumeFile"
+                      onChange={handleFileChange}
+                      accept=".pdf,.doc,.docx"
+                      required
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Portfolio Link (if applicable)
-                    </label>
-                    <input
-                      type="url"
-                      name="portfolio"
-                      value={formData.portfolio}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                      placeholder="https://yourportfolio.com"
-                    />
-                  </div>
-                </div>
-
-                {/* Cover Letter */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Cover Letter / Why You Want to Join Us *
-                  </label>
-                  <textarea
-                    name="coverLetter"
-                    value={formData.coverLetter}
-                    onChange={handleInputChange}
-                    required
-                    rows="4"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200"
-                    placeholder="Tell us why you're interested in working with Yako and what you can bring to our team..."
-                  ></textarea>
+                  <p className="text-gray-500 text-sm mt-1">
+                    Accepted formats: PDF, DOC, DOCX (Max 10MB)
+                  </p>
+                  {formData.resumeFile && (
+                    <p className="text-cyan-600 text-sm mt-1">
+                      Selected: {formData.resumeFile.name}
+                    </p>
+                  )}
                 </div>
 
                 {/* Additional Message */}
@@ -568,15 +523,28 @@ const Career = () => {
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center"
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 15px 35px rgba(6,182,212,0.4)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={formData.availability.length === 0}
+                  className={`w-full font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center transition-all duration-200 ${
+                    formData.availability.length === 0
+                      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                      : "bg-gradient-to-r from-cyan-500 to-cyan-600 text-white hover:shadow-xl"
+                  }`}
+                  whileHover={
+                    formData.availability.length > 0
+                      ? {
+                          scale: 1.02,
+                          boxShadow: "0 15px 35px rgba(6,182,212,0.4)",
+                        }
+                      : {}
+                  }
+                  whileTap={
+                    formData.availability.length > 0 ? { scale: 0.98 } : {}
+                  }
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Submit Application
+                  {formData.availability.length === 0
+                    ? "Select Available Days First"
+                    : "Submit Application"}
                 </motion.button>
               </form>
             </motion.div>
