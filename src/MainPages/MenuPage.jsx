@@ -232,9 +232,6 @@ const MenuPage = () => {
           backgroundImage: `url('${Background}')`,
         }}
       >
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-cyan-600/50 via-cyan-500/30 to-cyan-700/60"></div>
 

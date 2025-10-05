@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-import logoIMG from "../assets/images/logos/logo-black.png";
+import logoIMG from "../assets/images/logos/logo1.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -185,15 +185,11 @@ const Navbar = () => {
           >
             <motion.div className="relative">
               {/* Replace Gradient Box with Image */}
-              <div className="relative w-43  rounded-3xl overflow-hidden  ">
+              <div className="relative w-43   overflow-hidden  p-1 ">
                 <motion.img
                   src={logoIMG}
                   alt="Yummy Yako Logo"
                   className="w-full h-full object-cover"
-                  animate={{
-                    rotate: [0, 2, -2, 0],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
                 />
 
                 {/* Sparkle Effect */}
@@ -248,21 +244,6 @@ const Navbar = () => {
                 </motion.div>
               );
             })}
-
-            {/* CTA Button */}
-            <a href="tel:+">
-              <motion.button
-                className="ml-4 bg-gradient-to-r from-cyan-500 via-teal-400 to-cyan-400 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 10px 30px rgba(6, 182, 212, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <PhoneCall size={18} className="mr-2" />
-                CALL NOW
-              </motion.button>
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -324,24 +305,6 @@ const Navbar = () => {
                   </motion.div>
                 );
               })}
-
-              {/* Mobile CTA */}
-              <motion.div
-                variants={mobileItemVariants}
-                className="pt-4 border-t border-cyan-100"
-              >
-                <a href="tel:+">
-                  <motion.button
-                    className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-6 py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <PhoneCall size={20} className="mr-3" />
-                    Find Our Sweet Truck
-                  </motion.button>
-                </a>
-              </motion.div>
             </div>
           </motion.div>
         )}

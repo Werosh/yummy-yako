@@ -127,7 +127,7 @@ const DessertHero = () => {
                 bounce: 0.4,
               }}
             >
-              Sweet{" "}
+              Best{" "}
               <motion.span
                 className="relative inline-block"
                 whileHover={{ scale: 1.05 }}
@@ -142,7 +142,7 @@ const DessertHero = () => {
                     backgroundSize: "200% auto",
                   }}
                 >
-                  Perfection
+                  Sellers
                 </motion.span>
                 {/* Decorative underline */}
                 <motion.div

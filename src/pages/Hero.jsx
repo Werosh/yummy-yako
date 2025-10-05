@@ -42,10 +42,7 @@ const Hero = () => {
         style={{
           backgroundImage: `url('${Background}')`,
         }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 "></div>
-      </div>
+      ></div>
 
       {/* Content Container */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-start  px-4 sm:py-6 mb-5 ">

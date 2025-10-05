@@ -241,10 +241,20 @@ const Contact = () => {
                     details: "Negombo & Surrounding Areas",
                   },
                   {
-                    icon: Phone,
-                    title: "Phone",
-                    info: "+94 XX XXX XXXX",
-                    details: "Call or WhatsApp",
+                    icon: null,
+                    title: "Socials",
+                    socials: [
+                      {
+                        label: "Instagram",
+                        url: "https://www.instagram.com/yummyyako_au?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+                        color: "from-pink-500 to-purple-600",
+                      },
+                      {
+                        label: "TikTok",
+                        url: "https://www.tiktok.com/@yummyyako",
+                        color: "from-black to-gray-800",
+                      },
+                    ],
                   },
                   {
                     icon: Mail,
@@ -269,20 +279,41 @@ const Contact = () => {
                       boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                     }}
                   >
-                    <motion.div
-                      className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-full mb-4"
-                      variants={floatingVariants}
-                      animate="animate"
-                    >
-                      <item.icon className="w-6 h-6" />
-                    </motion.div>
+                    {item.icon ? (
+                      <motion.div
+                        className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-full mb-4"
+                        variants={floatingVariants}
+                        animate="animate"
+                      >
+                        <item.icon className="w-6 h-6" />
+                      </motion.div>
+                    ) : (
+                      <div className="flex flex-col gap-3 mb-4">
+                        {item.socials?.map((social, idx) => (
+                          <a
+                            key={idx}
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`px-4 py-2 rounded-full text-white font-semibold bg-gradient-to-r ${social.color} shadow-md hover:opacity-90 transition`}
+                          >
+                            {social.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
                     <h3 className="font-bold text-gray-800 mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-cyan-600 font-semibold mb-1">
-                      {item.info}
-                    </p>
-                    <p className="text-gray-600 text-sm">{item.details}</p>
+                    {item.info && (
+                      <p className="text-cyan-600 font-semibold mb-1">
+                        {item.info}
+                      </p>
+                    )}
+                    {item.details && (
+                      <p className="text-gray-600 text-sm">{item.details}</p>
+                    )}
                   </motion.div>
                 ))}
               </motion.div>

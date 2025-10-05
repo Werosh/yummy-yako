@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import Logo from "../assets/images/logos/logo-black.png";
+import Logo from "../assets/images/logos/logo1.png";
 
 const Footer = () => {
   const bounceVariants = {
@@ -69,7 +69,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-cyan-400 via-turquoise-400 to-teal-500 overflow-hidden ">
+    <footer className="relative bg-gradient-to-br from-[#80f7fb] via-cyan-300 to-[#55a9ac] overflow-hidden ">
       {/* Floating Dessert Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Bubble decorations */}

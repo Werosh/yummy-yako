@@ -3,18 +3,71 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Chefs from "../assets/images/others/chefs.png";
-
-// You can replace these with your actual image imports
-const galleryImages = [
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR-TUxTlB2nMB0fMaaIyOUpd0Kl0kzhN9GmA&s", // Image 1
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwdSk0hrTmx-spxgBAPpDx48rsi8f-vZiTZQ&s", // Image 2 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU5I_svs_ws8uGhPMWqB6U75Nd-B-es8lz-w&s", // Image 3 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-31gVuWxy_2XnkucfaOwaliQ3ZOIWNJHYkw&s", // Image 4 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdVmU08GIaghp6NTAC_gcGEmpi3_WeovfdHQ&s", // Image 5 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzCOEciIsNnriqDSMCOD4RZZVOXJ4OTmVH3Q&s", // Image 6 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGkt-1q5zJrL24jJCOlQ3q1tMeE6UojaIQLQ&s", // Image 7 - replace with your actual image import
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh41p-IfTuYJIzUrpv3J1LfD9kKqwTETx2tA&s", // Image 8 - replace with your actual image import
+// Google Reviews Data
+const googleReviews = [
+  {
+    name: "Gavin Jonesi",
+    initial: "G",
+    rating: 5,
+    review:
+      "Yummy Yako is a delightful spot for anyone craving bold flavors and hearty portions. The food is consistently fresh, with a great balance of spices and textures that leave a lasting impression. Their signature dishes are...",
+    timeAgo: "5 months ago",
+    color: "bg-blue-500",
+  },
+  {
+    name: "Johnny (jman)",
+    initial: "J",
+    rating: 5,
+    review:
+      "Mind-blowing dessert alert! 🚨🔥 Yummy Yako at Carnes Hill isn’t just a food truck—it’s a deep-fried paradise for anyone who loves knafeh and ice cream taken to epic new heights! If you’re a fan of Duo Duo fried ice cream, prepare to …",
+    timeAgo: "4 months ago",
+    color: "bg-pink-500",
+  },
+  {
+    name: "melzy phan",
+    initial: "M",
+    rating: 5,
+    review:
+      "Super yum. I liked the pancakes with their pistachio sauce! The fried icecream in the yummy sauce was nice and thick, I found the skin a bit …",
+    timeAgo: "6 month ago",
+    color: "bg-green-500",
+  },
+  {
+    name: "Gavin Jones",
+    initial: "G",
+    rating: 5,
+    review:
+      "Yummy Yako is a delightful spot for anyone craving bold flavors and hearty portions. The food is consistently fresh, with a great balance of spices and textures that leave a lasting impression. Their signature dishes are packed with flavor, …",
+    timeAgo: "5 month ago",
+    color: "bg-purple-500",
+  },
+  {
+    name: "Elle Tee",
+    initial: "E",
+    rating: 5,
+    review:
+      "Desserts were delicious. Dutch pancakes were soft and tasty. Everything went well together. Fried ice cream was also good. Strawberry cup portion was generous. Staff were friendly. Will be back",
+    timeAgo: "4 month ago",
+    color: "bg-orange-500",
+  },
+  {
+    name: "umair khan",
+    initial: "U",
+    rating: 5,
+    review:
+      "Got the pistachio knafeh and definitely did not disappoint!The combination of textures and flavours go together incredibly. Arguably the best fried icecream iv ever had. …",
+    timeAgo: "3 month ago",
+    color: "bg-teal-500",
+  },
+  {
+    name: "kylie du",
+    initial: "K",
+    rating: 5,
+    review:
+      "Tried this for the first time and wow blew my mind, the knafeh is such a unique creation that went so well and the ice cream was not melted like other fried ice creams. Not to mention the service was so genuine. Already planning the next visit back 😍",
+    timeAgo: "2 week ago",
+    color: "bg-teal-500",
+  },
 ];
 
 const About = () => {
@@ -90,38 +143,6 @@ const About = () => {
         ease: "easeInOut",
       },
     },
-  };
-
-  // Image float animations
-  const imageFloat = {
-    animate: (i) => ({
-      y: [0, -20, 0],
-      x: [0, 10, -10, 0],
-      rotate: [0, 3, -3, 0],
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 3 + i * 0.5,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: i * 0.3,
-      },
-    }),
-  };
-
-  // Stagger animation for images
-  const imageStagger = {
-    initial: { scale: 0, opacity: 0, y: 100 },
-    animate: (i) => ({
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 1,
-        delay: 1 + i * 0.2,
-      },
-    }),
   };
 
   return (
@@ -236,7 +257,7 @@ const About = () => {
                   description:
                     "Our bubbly truck brings dessert dreams to your doorstep with style!",
                   image:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfYvHPPyauL_F0I-s-irZaxDMCnWgh8nQh2g&s", // background image for card 1
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfYvHPPyauL_F0I-s-irZaxDMCnWgh8nQh2g&s",
                 },
                 {
                   icon: "🎂",
@@ -244,7 +265,7 @@ const About = () => {
                   description:
                     "Every treat is made with love and a sprinkle of magic dust!",
                   image:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeWBJDCSVNqIIPLpb0gyfvL3_CJb6ETpUQCw&s", // background image for card 2
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeWBJDCSVNqIIPLpb0gyfvL3_CJb6ETpUQCw&s",
                 },
                 {
                   icon: "💖",
@@ -252,7 +273,7 @@ const About = () => {
                   description:
                     "We're not just a truck - we're your neighborhood happiness makers!",
                   image:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQlodnCI9z_lnes6ON9oa6bpqDPfLY3_9Zg&s", // background image for card 3
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnQlodnCI9z_lnes6ON9oa6bpqDPfLY3_9Zg&s",
                 },
               ].map((card, index) => (
                 <motion.div
@@ -301,80 +322,159 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* Continuous Slideshow Gallery */}
-      <div className="relative w-full overflow-hidden">
+
+      {/* Google Reviews Slideshow */}
+      <div className="relative w-full overflow-hidden py-16">
         <motion.div
-          className="flex space-x-8 p-10 whitespace-nowrap"
+          className="flex space-x-6 px-10"
           animate={{
-            x: ["0%", "-100%"],
+            x: ["0%", "-50%"],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 20,
+              duration: 30,
               ease: "linear",
             },
           }}
         >
-          {/* First Set of Images */}
-          {galleryImages.map((imageSrc, index) => (
+          {/* First Set of Reviews */}
+          {googleReviews.map((review, index) => (
             <motion.div
-              key={`slide-${index}`}
-              className="relative flex-shrink-0"
-              custom={index}
-              variants={imageFloat}
-              animate="animate"
+              key={`review-${index}`}
+              className="relative flex-shrink-0 w-96"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <div
-                className={`
-            ${index % 3 === 0 ? "w-80 h-44" : ""}
-            ${index % 3 === 1 ? "w-64 h-40" : ""}
-            ${index % 3 === 2 ? "w-72 h-46" : ""}
-          `}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
-                  <img
-                    src={imageSrc}
-                    alt={`Gallery Image ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-full">
+                {/* Google Review Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                    <span className="font-semibold text-gray-700">
+                      Google Review
+                    </span>
+                  </div>
+                  <div className="flex">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Review Text */}
+                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                  "{review.review}"
+                </p>
+
+                {/* Reviewer Info */}
+                <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
+                  <div
+                    className={`${review.color} w-10 h-10 rounded-full flex items-center justify-center text-white font-bold`}
+                  >
+                    {review.initial}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">{review.name}</p>
+                    <p className="text-gray-500 text-sm">{review.timeAgo}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
 
           {/* Duplicate Set for Seamless Loop */}
-          {galleryImages.map((imageSrc, index) => (
+          {googleReviews.map((review, index) => (
             <motion.div
-              key={`slide-duplicate-${index}`}
-              className="relative flex-shrink-0"
-              custom={index}
-              variants={imageFloat}
-              animate="animate"
+              key={`review-duplicate-${index}`}
+              className="relative flex-shrink-0 w-96"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <div
-                className={`
-            ${index % 3 === 0 ? "w-80 h-44" : ""}
-            ${index % 3 === 1 ? "w-64 h-40" : ""}
-            ${index % 3 === 2 ? "w-72 h-46" : ""}
-          `}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50 to-cyan-100 rounded-3xl shadow-2xl border-6 border-white overflow-hidden">
-                  <img
-                    src={imageSrc}
-                    alt={`Gallery Image ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-full">
+                {/* Google Review Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                    <span className="font-semibold text-gray-700">
+                      Google Review
+                    </span>
+                  </div>
+                  <div className="flex">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Review Text */}
+                <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                  "{review.review}"
+                </p>
+
+                {/* Reviewer Info */}
+                <div className="flex items-center space-x-3 pt-4 border-t border-gray-100">
+                  <div
+                    className={`${review.color} w-10 h-10 rounded-full flex items-center justify-center text-white font-bold`}
+                  >
+                    {review.initial}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">{review.name}</p>
+                    <p className="text-gray-500 text-sm">{review.timeAgo}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Gradient fade edges */}
-        <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-cyan-400 to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-400 to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* Bottom Cream Drips */}
