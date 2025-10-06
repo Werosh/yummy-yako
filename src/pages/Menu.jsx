@@ -3,6 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// Import food images
+import NutellaKnafeh from "../assets/images/foods/Nutella Knafeh Fried Ice Cream.webp";
+import PistachioKnafeh from "../assets/images/foods/Pistachio Knafeh Fried Ice Cream.webp";
+import BiscoffKnafeh from "../assets/images/foods/Biscoff Knafeh Fried Ice Cream.webp";
+import YummyPancake from "../assets/images/foods/Yummy Dutch Pancake.webp";
+
 const DessertHero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -32,16 +38,14 @@ const DessertHero = () => {
       name: "NUTELLA KNAFEH FRIED ICE CREAM",
       price: "$14.00",
       description: "Topped with Nutella, Oreo Crumbs & Nutella Biscuit",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpQP1A3J4ic5yU-FTwA-VJusm-_FYjeeaD6A&s",
+      image: NutellaKnafeh,
     },
     {
       id: 2,
       name: "PISTACHIO KNAFEH FRIED ICE CREAM",
       price: "$16.50",
       description: "Topped with Pistachio Sauce & Pistachio Nuts",
-      image:
-        "https://amiraspantry.com/wp-content/uploads/2016/06/kunafa-cups-card.jpg",
+      image: PistachioKnafeh,
     },
     {
       id: 3,
@@ -49,8 +53,7 @@ const DessertHero = () => {
       price: "$14.00",
       description:
         "Topped with Biscoff Sauce, Biscoff Crumbs & Biscoff Cream Biscuit",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthJyl9IXGIE8zal0XkQw7hUH4PyS18Wc1Dw&s",
+      image: BiscoffKnafeh,
     },
     {
       id: 4,
@@ -58,8 +61,7 @@ const DessertHero = () => {
       price: "$10.00",
       description:
         "Mini pancakes topped with strawberries, banana & ice cream.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzIWmd7O5zeuJYfSHdoxHLuoBWQFTj-hvow&s",
+      image: YummyPancake,
     },
   ];
 

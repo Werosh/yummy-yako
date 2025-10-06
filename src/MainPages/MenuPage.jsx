@@ -3,6 +3,18 @@ import { motion } from "framer-motion";
 import { Star, Clock, ChefHat, Award, Heart, Plus } from "lucide-react";
 
 import Background from "../assets/images/back.png";
+
+// Import food images
+import NutellaKnafeh from "../assets/images/foods/Nutella Knafeh Fried Ice Cream.webp";
+import BiscoffKnafeh from "../assets/images/foods/Biscoff Knafeh Fried Ice Cream.webp";
+import PistachioKnafeh from "../assets/images/foods/Pistachio Knafeh Fried Ice Cream.webp";
+import YummyKnafeh from "../assets/images/foods/Yummy Knafeh Fried Ice Cream.webp";
+import BountyKnafeh from "../assets/images/foods/Bounty Knafeh Fried Ice Cream.webp";
+import YummyPancake from "../assets/images/foods/Yummy Dutch Pancake.webp";
+import PistachioPancake from "../assets/images/foods/Pistachio Dutch Pancakes.webp";
+import BiscoffPancake from "../assets/images/foods/Biscoff Dutch Pancakes.webp";
+import DubaiStrawberry from "../assets/images/foods/Dubai Strawberry Plate.webp";
+import Knafeh from "../assets/images/foods/Knafeh.webp";
 const MenuPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -18,8 +30,7 @@ const MenuPage = () => {
       name: "Nutella Knafeh Fried Ice Cream",
       category: "Knafeh",
       price: "$14.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsTwfGPwodm4rkQhV4lQ3Xmlan5yBk2oCAQ&s",
+      image: NutellaKnafeh,
       description:
         "Fried ice cream topped with Nutella, Oreo crumbs & Nutella biscuit.",
       rating: 4.9,
@@ -31,8 +42,7 @@ const MenuPage = () => {
       name: "Biscoff Knafeh Fried Ice Cream",
       category: "Knafeh",
       price: "$14.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQN1lJRwsOPjd2-ODmbCR7AH_r83DKn0sog&s",
+      image: BiscoffKnafeh,
       description:
         "Fried ice cream topped with Biscoff sauce, Biscoff crumbs & Biscoff cream biscuit.",
       rating: 4.8,
@@ -44,8 +54,7 @@ const MenuPage = () => {
       name: "Pistachio Knafeh Fried Ice Cream",
       category: "Knafeh",
       price: "$16.50",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8HuT25N3S-1YU5QClPoJ1Dka3QP_gmNR5ug&s",
+      image: PistachioKnafeh,
       description:
         "Fried ice cream topped with pistachio sauce & pistachio nuts.",
       rating: 5.0,
@@ -57,8 +66,7 @@ const MenuPage = () => {
       name: "Yummys Knafeh Fried Ice Cream",
       category: "Knafeh",
       price: "$15.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmeFqDEZRFOvas0A-o4wYOcnrSNWPYDxEp8A&s",
+      image: YummyKnafeh,
       description:
         "Fried ice cream topped with signature sauce, Oreo crumbs & Bueno.",
       rating: 4.7,
@@ -70,8 +78,7 @@ const MenuPage = () => {
       name: "Dutch Pancakes (Choice of Sauce)",
       category: "Pancakes",
       price: "$10.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRzIWmd7O5zeuJYfSHdoxHLuoBWQFTj-hvow&s",
+      image: YummyPancake,
       description:
         "Mini pancakes topped with strawberries, banana & ice cream.",
       rating: 4.6,
@@ -83,8 +90,7 @@ const MenuPage = () => {
       name: "Pistachio Dutch Pancakes",
       category: "Pancakes",
       price: "$12.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkmYRsoqI3gXEesy0_YJCkZBLrbvmQEAFsEg&s",
+      image: PistachioPancake,
       description:
         "Mini pancakes topped with strawberries, banana & ice cream with pistachio drizzle.",
       rating: 4.8,
@@ -96,8 +102,7 @@ const MenuPage = () => {
       name: "Knafeh",
       category: "Knafeh",
       price: "$11.00",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_K0h5zf6s9MrV1yPQN9K8Ek3yTcx4yvVHLg&s",
+      image: Knafeh,
       description:
         "Traditional homemade knafeh topped with strawberries & banana.",
       rating: 4.9,
@@ -109,8 +114,7 @@ const MenuPage = () => {
       name: "Strawberry Cup",
       category: "Knafeh",
       price: "$17.00",
-      image:
-        "https://cdn.shopify.com/s/files/1/0703/4231/2189/files/9999_480x480.jpg?v=1717362152",
+      image: DubaiStrawberry,
       description: "Fresh strawberries served with your choice of sauce.",
       rating: 4.7,
       prepTime: "5 min",
