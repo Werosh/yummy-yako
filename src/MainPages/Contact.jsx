@@ -280,12 +280,12 @@ const Contact = () => {
                       {
                         label: "Instagram",
                         url: "https://www.instagram.com/yummyyako_au?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
-                        color: "from-pink-500 to-purple-600",
+                        color: "from-blue-400 to-[#80f7fb]",
                       },
                       {
                         label: "TikTok",
                         url: "https://www.tiktok.com/@yummyyako",
-                        color: "from-black to-gray-800",
+                        color: "from-blue-400 to-[#80f7fb]",
                       },
                     ],
                   },

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Import food images
 import NutellaKnafeh from "../assets/images/foods/Nutella Knafeh Fried Ice Cream.webp";
@@ -82,13 +83,10 @@ const DessertHero = () => {
   return (
     <div
       id="hero-section"
-      className="relative  overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50"
+      className="relative overflow-hidden bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-50"
     >
       {/* Animated Background with Cream Drips */}
-      <motion.div className="absolute inset-0" style={{ y: y2 }}>
-        {/* Main Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-500 opacity-10" />
-      </motion.div>
+      <motion.div className="absolute inset-0" style={{ y: y2 }}></motion.div>
 
       {/* Floating Bubbles */}
       {[...Array(8)].map((_, i) => (
@@ -108,7 +106,7 @@ const DessertHero = () => {
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 min-h-screen px-6 lg:px-16 ">
+      <div className="relative z-10  px-6 lg:px-16 ">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div
@@ -285,21 +283,13 @@ const DessertHero = () => {
                     </motion.p>
                   </motion.div>
                 </motion.div>
-
-                {/* Decorative Cream Drop */}
-                <motion.div
-                  className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-8 bg-white rounded-full opacity-80"
-                  initial={{ scale: 0, y: -20 }}
-                  animate={{ scale: 1, y: 0 }}
-                  transition={{ delay: 1.8 + index * 0.1, type: "spring" }}
-                />
               </motion.div>
             ))}
           </div>
 
           {/* CTA Section */}
-          <motion.div className="text-center mb-10">
-            <a href="/menu">
+          <motion.div className="text-center  mb-5">
+            <Link to="/menu">
               <motion.button
                 className="inline-flex items-center bg-gradient-to-r from-teal-500 via-cyan-500 to-emerald-500 hover:from-teal-600 hover:via-cyan-600 hover:to-emerald-600 text-white font-bold py-1 px-12 rounded-full shadow-2xl text-xl lg:text-xl  mt-15"
                 whileHover={{
@@ -313,18 +303,10 @@ const DessertHero = () => {
               >
                 Explore Our Full Menu
               </motion.button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
-
-      {/* Bottom Decorative Element */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-teal-500/10 to-transparent"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.8, duration: 1 }}
-      />
     </div>
   );
 };

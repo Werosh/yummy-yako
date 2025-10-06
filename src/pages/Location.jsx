@@ -124,7 +124,7 @@ const MapPage = () => {
       <div className="relative">
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent z-10"></div>
         <motion.div
-          className="absolute top-0 left-0 right-0 h-24 bg-white"
+          className="absolute top-0 left-0 right-0 h-24 bg-white  "
           variants={dripAnimation}
           animate="animate"
           style={{
@@ -134,7 +134,7 @@ const MapPage = () => {
         />
       </div>
 
-      <div className="relative z-20 px-6 lg:px-8 pt-5 ">
+      <div className="relative z-20 px-6  py-20 lg:px-8 pt-5 ">
         {/* Header Section */}
         <motion.div
           className="text-center mb-16"
@@ -144,7 +144,7 @@ const MapPage = () => {
         >
           <motion.h1
             variants={fadeUpVariants}
-            className="text-4xl lg:text-4xl font-bold mb-6 leading-tight"
+            className="text-4xl lg:text-4xl font-bold mb-6 mt-16 leading-tight"
           >
             <span className="text-[#5ebbbe]">Find Our</span>
 

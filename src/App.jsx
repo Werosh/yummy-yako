@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./pages/Footer";
 import LandingPage from "./pages/LandingPage";
 
@@ -13,6 +14,7 @@ import Career from "./MainPages/Career";
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />

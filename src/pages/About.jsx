@@ -483,7 +483,7 @@ const About = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 200"
           preserveAspectRatio="none"
-          className="w-full h-32 rotate-180"
+          className="w-full h-22 rotate-180"
         >
           <motion.path
             d="M0,0 L1200,0 L1200,60 Q1100,90 1000,70 Q900,50 800,80 Q700,110 600,75 Q500,40 400,85 Q300,130 200,80 Q100,30 0,70 Z"

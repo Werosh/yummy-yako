@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   MapPin,
   Phone,
@@ -218,23 +219,24 @@ const Footer = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
                 >
-                  <motion.a
-                    href={link.href}
-                    className="text-gray-600 hover:text-cyan-600 transition-all duration-300 flex items-center group font-medium"
-                    whileHover={{ x: 8 }}
-                  >
+                  <Link to={link.href}>
                     <motion.div
-                      className="w-3 h-3 bg-gradient-to-r from-cyan-100 to-teal-100 rounded-full mr-4 group-hover:scale-125 transition-transform"
-                      whileHover={{ scale: 1.3 }}
-                    />
-                    {link.label}
-                    <motion.div
-                      className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
-                      whileHover={{ x: 3 }}
+                      className="text-gray-600 hover:text-cyan-600 transition-all duration-300 flex items-center group font-medium"
+                      whileHover={{ x: 8 }}
                     >
-                      <ChevronRight size={16} />
+                      <motion.div
+                        className="w-3 h-3 bg-gradient-to-r from-cyan-100 to-teal-100 rounded-full mr-4 group-hover:scale-125 transition-transform"
+                        whileHover={{ scale: 1.3 }}
+                      />
+                      {link.label}
+                      <motion.div
+                        className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                        whileHover={{ x: 3 }}
+                      >
+                        <ChevronRight size={16} />
+                      </motion.div>
                     </motion.div>
-                  </motion.a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

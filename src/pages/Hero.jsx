@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import Background from "../assets/images/back.png";
 import Logo from "../assets/images/logos/logo1.png";
@@ -112,6 +113,15 @@ const Hero = () => {
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              onClick={() => {
+                const locationSection = document.getElementById("location");
+                if (locationSection) {
+                  locationSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
             >
               Find Us
             </motion.button>
@@ -119,18 +129,20 @@ const Hero = () => {
 
           {/* Our Menu Button */}
           <motion.div variants={scaleIn} className="flex-1">
-            <motion.button
-              className="w-full bg-gradient-to-r from-[#80f7fb] to-[#23dfe6] text-white font-bold py-2.5 px-4 rounded-full shadow-lg text-sm border-2 border-blue-100 sm:py-3 sm:px-5 sm:text-base md:px-6"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-                boxShadow: "0 15px 30px rgba(59,130,246,0.3)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              Our Menu
-            </motion.button>
+            <Link to="/menu">
+              <motion.button
+                className="w-full bg-gradient-to-r from-[#80f7fb] to-[#23dfe6] text-white font-bold py-2.5 px-4 rounded-full shadow-lg text-sm border-2 border-blue-100 sm:py-3 sm:px-5 sm:text-base md:px-6"
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                  boxShadow: "0 15px 30px rgba(59,130,246,0.3)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                Our Menu
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
 

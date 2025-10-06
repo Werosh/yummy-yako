@@ -179,31 +179,35 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 mt-1">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-4 group cursor-pointer"
-            variants={logoVariants}
-          >
-            <motion.div className="relative">
-              {/* Replace Gradient Box with Image */}
-              <div className="relative w-43   overflow-hidden  p-1 ">
-                <motion.img
-                  src={logoIMG}
-                  alt="Yummy Yako Logo"
-                  className="w-full h-full object-cover"
-                />
+          <Link to="/" onClick={() => setIsOpen(false)}>
+            <motion.div
+              className="flex items-center space-x-4 group cursor-pointer"
+              variants={logoVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <motion.div className="relative">
+                {/* Replace Gradient Box with Image */}
+                <div className="relative w-43   overflow-hidden  p-1 ">
+                  <motion.img
+                    src={logoIMG}
+                    alt="Yummy Yako Logo"
+                    className="w-full h-full object-cover"
+                  />
 
-                {/* Sparkle Effect */}
-                <motion.div
-                  className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full"
-                  animate={{
-                    scale: [0, 1, 0],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </div>
+                  {/* Sparkle Effect */}
+                  <motion.div
+                    className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full"
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-2">
