@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG, createEmailParams } from "../config/emailjs";
 import {
   Calendar,
   Users,
@@ -181,39 +182,15 @@ const Events = () => {
     setSubmitStatus(null);
 
     try {
-      // Prepare template parameters for EmailJS
-      const templateParams = {
-        from_name: formData.fullName,
-        from_email: formData.email,
-        phone_number: formData.phoneNumber,
-        event_type: formData.eventType,
-        event_date: formData.eventDate,
-        event_location: formData.eventLocation,
-        guest_count: formData.guestCount,
-        item_count: formData.itemCount,
-        dietary_requirements: formData.dietaryRequirements || "None specified",
-        additional_requirements:
-          formData.additionalRequirements || "None specified",
-        message: `Event Inquiry Details:
-        Event Type: ${formData.eventType}
-        Event Date: ${formData.eventDate}
-        Location: ${formData.eventLocation}
-        Guest Count: ${formData.guestCount}
-        Item Count: ${formData.itemCount}
-        Dietary Requirements: ${
-          formData.dietaryRequirements || "None specified"
-        }
-        Additional Requirements: ${
-          formData.additionalRequirements || "None specified"
-        }`,
-      };
+      // Prepare template parameters using the universal configuration
+      const templateParams = createEmailParams("event_booking", formData);
 
       // Send email using EmailJS
       await emailjs.send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
 
       setSubmitStatus("success");

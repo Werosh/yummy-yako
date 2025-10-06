@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG, createEmailParams } from "../config/emailjs";
 import Background from "../assets/images/back.png";
 
 import {
@@ -18,6 +19,8 @@ import {
 } from "lucide-react";
 
 const Career = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,32 +74,24 @@ const Career = () => {
       return;
     }
 
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
     try {
-      // Prepare template parameters for EmailJS
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        availability: formData.availability.join(", "),
-        message: formData.message,
-        resume_file: formData.resumeFile
-          ? formData.resumeFile.name
-          : "No file uploaded",
-      };
+      // Prepare template parameters using the universal configuration
+      const templateParams = createEmailParams("career_application", formData);
 
       // Send email using EmailJS
       await emailjs.send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+        EMAILJS_CONFIG.PUBLIC_KEY
       );
 
-      alert(
-        "Thank you for your application! We will review your information and contact you soon."
-      );
+      setSubmitStatus("success");
 
-      // Reset form
+      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -105,11 +100,21 @@ const Career = () => {
         resumeFile: null,
         message: "",
       });
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
     } catch (error) {
       console.error("Error sending application:", error);
-      alert(
-        "There was an error submitting your application. Please try again."
-      );
+      setSubmitStatus("error");
+
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -520,17 +525,42 @@ const Career = () => {
                   ></textarea>
                 </div>
 
+                {/* Status Messages */}
+                {submitStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-green-100 border border-green-300 rounded-2xl text-green-800 text-center"
+                  >
+                    <p className="font-semibold">
+                      Thank you for your application!
+                    </p>
+                    <p>We will review your information and contact you soon.</p>
+                  </motion.div>
+                )}
+
+                {submitStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-red-100 border border-red-300 rounded-2xl text-red-800 text-center"
+                  >
+                    <p className="font-semibold">Oops! Something went wrong.</p>
+                    <p>Please try again or contact us directly.</p>
+                  </motion.div>
+                )}
+
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  disabled={formData.availability.length === 0}
+                  disabled={formData.availability.length === 0 || isSubmitting}
                   className={`w-full font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center transition-all duration-200 ${
-                    formData.availability.length === 0
+                    formData.availability.length === 0 || isSubmitting
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : "bg-gradient-to-r from-cyan-500 to-cyan-600 text-white hover:shadow-xl"
                   }`}
                   whileHover={
-                    formData.availability.length > 0
+                    formData.availability.length > 0 && !isSubmitting
                       ? {
                           scale: 1.02,
                           boxShadow: "0 15px 35px rgba(6,182,212,0.4)",
@@ -538,13 +568,32 @@ const Career = () => {
                       : {}
                   }
                   whileTap={
-                    formData.availability.length > 0 ? { scale: 0.98 } : {}
+                    formData.availability.length > 0 && !isSubmitting
+                      ? { scale: 0.98 }
+                      : {}
                   }
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  {formData.availability.length === 0
-                    ? "Select Available Days First"
-                    : "Submit Application"}
+                  {isSubmitting ? (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                      />
+                      Submitting Application...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      {formData.availability.length === 0
+                        ? "Select Available Days First"
+                        : "Submit Application"}
+                    </>
+                  )}
                 </motion.button>
               </form>
             </motion.div>

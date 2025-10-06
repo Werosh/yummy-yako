@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG, createEmailParams } from "../config/emailjs";
 import {
   MapPin,
   Phone,
@@ -13,6 +15,8 @@ import {
 import Background from "../assets/images/back.png";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,24 +49,53 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(
-      "Thank you for your order! We will contact you soon to confirm details."
-    );
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      orderType: "",
-      items: "",
-      specialRequests: "",
-      preferredDate: "",
-      preferredTime: "",
-      message: "",
-    });
+    try {
+      // Prepare template parameters using the universal configuration
+      const templateParams = createEmailParams("contact_order", formData);
+
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      setSubmitStatus("success");
+
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        orderType: "",
+        items: "",
+        specialRequests: "",
+        preferredDate: "",
+        preferredTime: "",
+        message: "",
+      });
+
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } catch (error) {
+      console.error("Error sending order request:", error);
+      setSubmitStatus("error");
+
+      // Auto-hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Animation variants
@@ -486,18 +519,67 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
+                {/* Status Messages */}
+                {submitStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-green-100 border border-green-300 rounded-2xl text-green-800 text-center"
+                  >
+                    <p className="font-semibold">Thank you for your order!</p>
+                    <p>We'll contact you soon to confirm details.</p>
+                  </motion.div>
+                )}
+
+                {submitStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-red-100 border border-red-300 rounded-2xl text-red-800 text-center"
+                  >
+                    <p className="font-semibold">Oops! Something went wrong.</p>
+                    <p>Please try again or contact us directly.</p>
+                  </motion.div>
+                )}
+
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center"
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 15px 35px rgba(6,182,212,0.4)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                  className={`w-full font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center transition-all ${
+                    isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-cyan-500 to-cyan-600 hover:shadow-xl"
+                  } text-white`}
+                  whileHover={
+                    !isSubmitting
+                      ? {
+                          scale: 1.02,
+                          boxShadow: "0 15px 35px rgba(6,182,212,0.4)",
+                        }
+                      : {}
+                  }
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Order Request
+                  {isSubmitting ? (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                      />
+                      Sending Order Request...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Send Order Request
+                    </>
+                  )}
                 </motion.button>
               </form>
             </motion.div>
