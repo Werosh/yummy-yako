@@ -27,6 +27,9 @@
       <p style="margin: 5px 0 0 0; font-size: 16px; opacity: 0.9">
         New {{form_type}} Submission
       </p>
+      <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.8">
+        {{subject}}
+      </p>
     </div>
 
     <!-- Main Content -->
@@ -71,6 +74,51 @@
         >
           {{message}}
         </div>
+
+        <!-- File Attachment Info (for Career Form) -->
+        {{#if resume_file}}
+        <div
+          style="
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #f59e0b;
+          "
+        >
+          <h3
+            style="
+              color: #92400e;
+              margin: 0 0 10px 0;
+              font-size: 16px;
+              display: flex;
+              align-items: center;
+            "
+          >
+            📎 Resume File Information
+          </h3>
+          <p style="margin: 5px 0; color: #92400e; font-size: 14px">
+            <strong>File Name:</strong> {{resume_file}}
+          </p>
+          <p style="margin: 5px 0; color: #92400e; font-size: 14px">
+            <strong>File Size:</strong> {{resume_file_size}}
+          </p>
+          <p style="margin: 5px 0; color: #92400e; font-size: 14px">
+            <strong>File Type:</strong> {{resume_file_type}}
+          </p>
+          <p
+            style="
+              margin: 10px 0 0 0;
+              color: #92400e;
+              font-size: 12px;
+              font-style: italic;
+            "
+          >
+            Note: File attachments are handled separately. The actual file will
+            be sent via your email provider's attachment system.
+          </p>
+        </div>
+        {{/if}}
       </div>
 
       <!-- Contact Information -->

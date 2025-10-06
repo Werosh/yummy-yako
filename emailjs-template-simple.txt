@@ -12,6 +12,19 @@ SUBMISSION DETAILS
 
 {{message}}
 
+{{#if resume_file}}
+========================================
+RESUME FILE INFORMATION
+========================================
+
+File Name: {{resume_file}}
+File Size: {{resume_file_size}}
+File Type: {{resume_file_type}}
+
+Note: File attachments are handled separately by your email provider.
+========================================
+{{/if}}
+
 ========================================
 CONTACT INFORMATION
 ========================================

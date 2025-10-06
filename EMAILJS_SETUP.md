@@ -45,21 +45,25 @@ Submitted by: {{from_name}} Email: {{from_email}} Phone: {{phone}} Date:
 1. Go to **Account** → **General**
 2. Copy your **Public Key** (e.g., `user_abc123def456`)
 
-### 5. Configure Environment Variables
+### 5. Configure Environment Variables (Optional)
 
-Create a `.env` file in your project root:
+The EmailJS credentials are already configured in `src/config/emailjs.js` with your actual values:
+
+- Service ID: `service_pkfw4vp`
+- Template ID: `template_9pzkrq7`
+- Public Key: `Gsd0JOQf7_QY4GttC`
+
+If you prefer to use environment variables, create a `.env` file in your project root:
 
 ```env
-VITE_EMAILJS_SERVICE_ID=your_service_id_here
-VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
-VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
+VITE_EMAILJS_SERVICE_ID=service_pkfw4vp
+VITE_EMAILJS_TEMPLATE_ID=template_9pzkrq7
+VITE_EMAILJS_PUBLIC_KEY=Gsd0JOQf7_QY4GttC
 ```
 
-**Important**: Replace the placeholder values with your actual EmailJS credentials.
+### 6. Configuration Complete ✅
 
-### 6. Update Configuration File
-
-The configuration is already set up in `src/config/emailjs.js`. If you prefer to hardcode your credentials (not recommended for production), you can update this file directly.
+Your EmailJS credentials are already configured and ready to use! The forms will now send emails using your EmailJS service.
 
 ## Template Variables
 

@@ -82,6 +82,9 @@ const Career = () => {
       const templateParams = createEmailParams("career_application", formData);
 
       // Send email using EmailJS
+      // Note: File attachments are included in the email template as metadata
+      // For actual file delivery, consider using a file sharing service or
+      // asking applicants to email resumes separately
       await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
@@ -501,6 +504,10 @@ const Career = () => {
                   </div>
                   <p className="text-gray-500 text-sm mt-1">
                     Accepted formats: PDF, DOC, DOCX (Max 10MB)
+                  </p>
+                  <p className="text-blue-600 text-sm mt-1 font-medium">
+                    Note: We'll contact you to request your resume file after
+                    reviewing your application.
                   </p>
                   {formData.resumeFile && (
                     <p className="text-cyan-600 text-sm mt-1">

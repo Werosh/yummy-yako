@@ -6,10 +6,9 @@
 // - VITE_EMAILJS_PUBLIC_KEY
 
 export const EMAILJS_CONFIG = {
-  SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID || "your_service_id_here",
-  TEMPLATE_ID:
-    import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "your_template_id_here",
-  PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "your_public_key_here",
+  SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_pkfw4vp",
+  TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_9pzkrq7",
+  PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "Gsd0JOQf7_QY4GttC",
 };
 
 // Universal EmailJS template parameters for all forms
@@ -89,6 +88,12 @@ Contact Information:
         resume_file: formData.resumeFile
           ? formData.resumeFile.name
           : "No file uploaded",
+        resume_file_size: formData.resumeFile
+          ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
+          : "N/A",
+        resume_file_type: formData.resumeFile
+          ? formData.resumeFile.type
+          : "N/A",
         subject: `Job Application from ${baseParams.from_name}`,
         message: `
 Job Application Details:
@@ -100,6 +105,12 @@ Job Application Details:
 - Resume File: ${
           formData.resumeFile ? formData.resumeFile.name : "No file uploaded"
         }
+- File Size: ${
+          formData.resumeFile
+            ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
+            : "N/A"
+        }
+- File Type: ${formData.resumeFile ? formData.resumeFile.type : "N/A"}
 - Additional Information: ${formData.message || "None"}
 
 Contact Information:
