@@ -13,12 +13,20 @@ export const EMAILJS_CONFIG = {
 
 // Universal EmailJS template parameters for all forms
 export const createEmailParams = (formType, formData) => {
+  // Sanitize function to clean template variables
+  const sanitize = (value) => {
+    if (!value) return "Not specified";
+    return String(value).replace(/[{}]/g, "").trim();
+  };
+
   const baseParams = {
-    form_type: formType,
-    from_name: formData.name || formData.fullName || "Unknown",
-    from_email: formData.email || "No email provided",
-    phone: formData.phone || formData.phoneNumber || "No phone provided",
-    submission_date: new Date().toLocaleString(),
+    form_type: sanitize(formType),
+    from_name: sanitize(formData.name || formData.fullName || "Unknown User"),
+    from_email: sanitize(formData.email || "noemail@example.com"),
+    phone: sanitize(
+      formData.phone || formData.phoneNumber || "No phone provided"
+    ),
+    submission_date: sanitize(new Date().toLocaleString()),
   };
 
   // Add form-specific data
@@ -26,105 +34,112 @@ export const createEmailParams = (formType, formData) => {
     case "event_booking":
       return {
         ...baseParams,
-        event_type: formData.eventType || "Not specified",
-        event_date: formData.eventDate || "Not specified",
-        event_location: formData.eventLocation || "Not specified",
-        guest_count: formData.guestCount || "Not specified",
-        item_count: formData.itemCount || "Not specified",
-        dietary_requirements: formData.dietaryRequirements || "None specified",
-        additional_requirements:
-          formData.additionalRequirements || "None specified",
-        subject: `Event Booking Request from ${baseParams.from_name}`,
-        message: `
+        event_type: sanitize(formData.eventType),
+        event_date: sanitize(formData.eventDate),
+        event_location: sanitize(formData.eventLocation),
+        guest_count: sanitize(formData.guestCount),
+        item_count: sanitize(formData.itemCount),
+        dietary_requirements: sanitize(formData.dietaryRequirements),
+        additional_requirements: sanitize(formData.additionalRequirements),
+        subject: sanitize(`Event Booking Request from ${baseParams.from_name}`),
+        message: sanitize(
+          `
 Event Booking Details:
-- Event Type: ${formData.eventType || "Not specified"}
-- Event Date: ${formData.eventDate || "Not specified"}
-- Location: ${formData.eventLocation || "Not specified"}
-- Guest Count: ${formData.guestCount || "Not specified"}
-- Item Count: ${formData.itemCount || "Not specified"}
-- Dietary Requirements: ${formData.dietaryRequirements || "None specified"}
-- Additional Requirements: ${
-          formData.additionalRequirements || "None specified"
-        }
+- Event Type: ${sanitize(formData.eventType)}
+- Event Date: ${sanitize(formData.eventDate)}
+- Location: ${sanitize(formData.eventLocation)}
+- Guest Count: ${sanitize(formData.guestCount)}
+- Item Count: ${sanitize(formData.itemCount)}
+- Dietary Requirements: ${sanitize(formData.dietaryRequirements)}
+- Additional Requirements: ${sanitize(formData.additionalRequirements)}
 
 Contact Information:
 - Name: ${baseParams.from_name}
 - Email: ${baseParams.from_email}
 - Phone: ${baseParams.phone}
-        `.trim(),
+        `.trim()
+        ),
       };
 
     case "contact_order":
       return {
         ...baseParams,
-        order_type: formData.orderType || "Not specified",
-        items: formData.items || "Not specified",
-        special_requests: formData.specialRequests || "None specified",
-        preferred_date: formData.preferredDate || "Not specified",
-        preferred_time: formData.preferredTime || "Not specified",
-        subject: `Order Request from ${baseParams.from_name}`,
-        message: `
+        order_type: sanitize(formData.orderType),
+        items: sanitize(formData.items),
+        special_requests: sanitize(formData.specialRequests),
+        preferred_date: sanitize(formData.preferredDate),
+        preferred_time: sanitize(formData.preferredTime),
+        subject: sanitize(`Order Request from ${baseParams.from_name}`),
+        message: sanitize(
+          `
 Order Details:
-- Order Type: ${formData.orderType || "Not specified"}
-- Items: ${formData.items || "Not specified"}
-- Special Requests: ${formData.specialRequests || "None specified"}
-- Preferred Date: ${formData.preferredDate || "Not specified"}
-- Preferred Time: ${formData.preferredTime || "Not specified"}
-- Additional Message: ${formData.message || "None"}
+- Order Type: ${sanitize(formData.orderType)}
+- Items: ${sanitize(formData.items)}
+- Special Requests: ${sanitize(formData.specialRequests)}
+- Preferred Date: ${sanitize(formData.preferredDate)}
+- Preferred Time: ${sanitize(formData.preferredTime)}
+- Additional Message: ${sanitize(formData.message)}
 
 Contact Information:
 - Name: ${baseParams.from_name}
 - Email: ${baseParams.from_email}
 - Phone: ${baseParams.phone}
-        `.trim(),
+        `.trim()
+        ),
       };
 
     case "career_application":
       return {
         ...baseParams,
-        availability: formData.availability
-          ? formData.availability.join(", ")
-          : "Not specified",
-        resume_file: formData.resumeFile
-          ? formData.resumeFile.name
-          : "No file uploaded",
-        resume_file_size: formData.resumeFile
-          ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
-          : "N/A",
-        resume_file_type: formData.resumeFile
-          ? formData.resumeFile.type
-          : "N/A",
-        subject: `Job Application from ${baseParams.from_name}`,
-        message: `
-Job Application Details:
-- Available Days: ${
+        availability: sanitize(
           formData.availability
             ? formData.availability.join(", ")
             : "Not specified"
-        }
-- Resume File: ${
+        ),
+        resume_file: sanitize(
           formData.resumeFile ? formData.resumeFile.name : "No file uploaded"
-        }
-- File Size: ${
+        ),
+        resume_file_size: sanitize(
           formData.resumeFile
             ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
             : "N/A"
-        }
-- File Type: ${formData.resumeFile ? formData.resumeFile.type : "N/A"}
-- Additional Information: ${formData.message || "None"}
+        ),
+        resume_file_type: sanitize(
+          formData.resumeFile ? formData.resumeFile.type : "N/A"
+        ),
+        subject: sanitize(`Job Application from ${baseParams.from_name}`),
+        message: sanitize(
+          `
+Job Application Details:
+- Available Days: ${sanitize(
+            formData.availability
+              ? formData.availability.join(", ")
+              : "Not specified"
+          )}
+- Resume File: ${sanitize(
+            formData.resumeFile ? formData.resumeFile.name : "No file uploaded"
+          )}
+- File Size: ${sanitize(
+            formData.resumeFile
+              ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
+              : "N/A"
+          )}
+- File Type: ${sanitize(formData.resumeFile ? formData.resumeFile.type : "N/A")}
+- Additional Information: ${sanitize(formData.message)}
 
 Contact Information:
 - Name: ${baseParams.from_name}
 - Email: ${baseParams.from_email}
 - Phone: ${baseParams.phone}
-        `.trim(),
+        `.trim()
+        ),
       };
 
     default:
       return {
         ...baseParams,
-        subject: `Form Submission from ${baseParams.from_name}`,
-        message: "Form submission received.",
+        subject: sanitize(`Form Submission from ${baseParams.from_name}`),
+        message: sanitize("Form submission received."),
       };
   }
 };

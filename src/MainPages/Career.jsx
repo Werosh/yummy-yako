@@ -506,8 +506,9 @@ const Career = () => {
                     Accepted formats: PDF, DOC, DOCX (Max 10MB)
                   </p>
                   <p className="text-blue-600 text-sm mt-1 font-medium">
-                    Note: We'll contact you to request your resume file after
-                    reviewing your application.
+                    📎 File will be processed after form submission. We'll
+                    contact you to request the file after reviewing your
+                    application.
                   </p>
                   {formData.resumeFile && (
                     <p className="text-cyan-600 text-sm mt-1">

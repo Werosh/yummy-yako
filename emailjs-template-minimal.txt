@@ -1,0 +1,20 @@
+Subject: {{subject}}
+
+🍰 YUMMY YAKO - New {{form_type}} Submission
+
+Hello,
+
+You have received a new form submission:
+
+{{message}}
+
+---
+Contact Information:
+Name: {{from_name}}
+Email: {{from_email}}
+Phone: {{phone}}
+Form Type: {{form_type}}
+Submitted: {{submission_date}}
+
+Best regards,
+Yummy Yako Website
