@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yummy Yako Form Submission</title>
+    <meta charset="utf-8" />
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    "
+  >
+    <div style="max-width: 600px; margin: 0 auto; background: #ffffff">
+      <!-- Header -->
+      <div
+        style="
+          background: linear-gradient(135deg, #06b6d4, #14b8a6);
+          color: white;
+          padding: 30px 20px;
+          text-align: center;
+          border-radius: 10px 10px 0 0;
+        "
+      >
+        <h1 style="margin: 0; font-size: 28px; font-weight: bold">
+          🍰 Yummy Yako
+        </h1>
+        <p style="margin: 8px 0 0 0; font-size: 16px; opacity: 0.9">
+          New {{form_type}} Submission
+        </p>
+        <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.8">
+          {{subject}}
+        </p>
+      </div>
+
+      <!-- Main Content -->
+      <div
+        style="padding: 30px; background: #f8fafc; border-radius: 0 0 10px 10px"
+      >
+        <!-- Submission Details -->
+        <div
+          style="
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          "
+        >
+          <h2
+            style="
+              color: #06b6d4;
+              margin: 0 0 20px 0;
+              font-size: 20px;
+              font-weight: bold;
+              border-bottom: 2px solid #06b6d4;
+              padding-bottom: 10px;
+            "
+          >
+            📋 Submission Details
+          </h2>
+          <div
+            style="
+              background: #f8fafc;
+              padding: 20px;
+              border-radius: 8px;
+              border-left: 4px solid #06b6d4;
+            "
+          >
+            <pre
+              style="
+                white-space: pre-line;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                margin: 0;
+                color: #374151;
+                line-height: 1.6;
+              "
+            >
+{{message}}</pre
+            >
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div
+          style="
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          "
+        >
+          <h2
+            style="
+              color: #06b6d4;
+              margin: 0 0 20px 0;
+              font-size: 20px;
+              font-weight: bold;
+              border-bottom: 2px solid #06b6d4;
+              padding-bottom: 10px;
+            "
+          >
+            👤 Contact Information
+          </h2>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
+                  padding: 12px 0;
+                  font-weight: bold;
+                  color: #64748b;
+                  width: 120px;
+                  vertical-align: top;
+                "
+              >
+                Name:
+              </td>
+              <td style="padding: 12px 0; color: #1e293b; font-weight: 500">
+                {{from_name}}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 12px 0;
+                  font-weight: bold;
+                  color: #64748b;
+                  vertical-align: top;
+                "
+              >
+                Email:
+              </td>
+              <td style="padding: 12px 0; color: #1e293b">
+                <a
+                  href="mailto:{{from_email}}"
+                  style="
+                    color: #06b6d4;
+                    text-decoration: none;
+                    font-weight: 500;
+                  "
+                  >{{from_email}}</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 12px 0;
+                  font-weight: bold;
+                  color: #64748b;
+                  vertical-align: top;
+                "
+              >
+                Phone:
+              </td>
+              <td style="padding: 12px 0; color: #1e293b; font-weight: 500">
+                <a
+                  href="tel:{{phone}}"
+                  style="color: #06b6d4; text-decoration: none"
+                  >{{phone}}</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 12px 0;
+                  font-weight: bold;
+                  color: #64748b;
+                  vertical-align: top;
+                "
+              >
+                Form Type:
+              </td>
+              <td
+                style="
+                  padding: 12px 0;
+                  color: #1e293b;
+                  text-transform: capitalize;
+                  font-weight: 500;
+                "
+              >
+                {{form_type}}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 12px 0;
+                  font-weight: bold;
+                  color: #64748b;
+                  vertical-align: top;
+                "
+              >
+                Submitted:
+              </td>
+              <td style="padding: 12px 0; color: #1e293b; font-weight: 500">
+                {{submission_date}}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="text-align: center; margin-top: 30px">
+          <a
+            href="mailto:{{from_email}}?subject=Re: {{subject}}"
+            style="
+              background: linear-gradient(135deg, #06b6d4, #0891b2);
+              color: white;
+              padding: 15px 30px;
+              text-decoration: none;
+              border-radius: 8px;
+              margin: 0 10px;
+              display: inline-block;
+              font-weight: bold;
+              font-size: 14px;
+              box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+              transition: all 0.3s ease;
+            "
+          >
+            📧 Reply to Customer
+          </a>
+          <a
+            href="tel:{{phone}}"
+            style="
+              background: linear-gradient(135deg, #14b8a6, #0d9488);
+              color: white;
+              padding: 15px 30px;
+              text-decoration: none;
+              border-radius: 8px;
+              margin: 0 10px;
+              display: inline-block;
+              font-weight: bold;
+              font-size: 14px;
+              box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+              transition: all 0.3s ease;
+            "
+          >
+            📞 Call Customer
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        style="
+          text-align: center;
+          margin-top: 20px;
+          padding: 20px;
+          color: #64748b;
+          font-size: 12px;
+          background: #f8fafc;
+          border-radius: 0 0 10px 10px;
+        "
+      >
+        <p style="margin: 0 0 5px 0">
+          This email was automatically generated by the Yummy Yako website.
+        </p>
+        <p style="margin: 0; font-weight: 500">
+          🍰 Making every moment sweet! 🍰
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

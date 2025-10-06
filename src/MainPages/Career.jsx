@@ -15,7 +15,6 @@ import {
   FileText,
   Award,
   Users,
-  Upload,
 } from "lucide-react";
 
 const Career = () => {
@@ -26,7 +25,6 @@ const Career = () => {
     email: "",
     phone: "",
     availability: [],
-    resumeFile: null,
     message: "",
   });
 
@@ -45,14 +43,6 @@ const Career = () => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prev) => ({
-      ...prev,
-      resumeFile: file,
     }));
   };
 
@@ -100,7 +90,6 @@ const Career = () => {
         email: "",
         phone: "",
         availability: [],
-        resumeFile: null,
         message: "",
       });
 
@@ -486,35 +475,21 @@ const Career = () => {
                   )}
                 </div>
 
-                {/* Resume File Upload */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    <Upload className="w-4 h-4 inline mr-1" />
-                    Resume/CV File *
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="file"
-                      name="resumeFile"
-                      onChange={handleFileChange}
-                      accept=".pdf,.doc,.docx"
-                      required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100"
-                    />
-                  </div>
-                  <p className="text-gray-500 text-sm mt-1">
-                    Accepted formats: PDF, DOC, DOCX (Max 10MB)
+                {/* Resume Information */}
+                <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                  <h3 className="font-semibold text-blue-800 mb-2 flex items-center">
+                    <FileText className="w-4 h-4 mr-2" />
+                    Resume Submission
+                  </h3>
+                  <p className="text-blue-700 text-sm mb-3">
+                    After submitting this form, please email your resume to:
                   </p>
-                  <p className="text-blue-600 text-sm mt-1 font-medium">
-                    📎 File will be processed after form submission. We'll
-                    contact you to request the file after reviewing your
-                    application.
+                  <p className="font-mono bg-blue-100 p-2 rounded text-blue-800 text-sm">
+                    careers@yummyyako.com
                   </p>
-                  {formData.resumeFile && (
-                    <p className="text-cyan-600 text-sm mt-1">
-                      Selected: {formData.resumeFile.name}
-                    </p>
-                  )}
+                  <p className="text-blue-600 text-xs mt-2">
+                    Include your name and "Job Application" in the subject line.
+                  </p>
                 </div>
 
                 {/* Additional Message */}

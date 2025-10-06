@@ -96,17 +96,6 @@ Contact Information:
             ? formData.availability.join(", ")
             : "Not specified"
         ),
-        resume_file: sanitize(
-          formData.resumeFile ? formData.resumeFile.name : "No file uploaded"
-        ),
-        resume_file_size: sanitize(
-          formData.resumeFile
-            ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
-            : "N/A"
-        ),
-        resume_file_type: sanitize(
-          formData.resumeFile ? formData.resumeFile.type : "N/A"
-        ),
         subject: sanitize(`Job Application from ${baseParams.from_name}`),
         message: sanitize(
           `
@@ -116,21 +105,14 @@ Job Application Details:
               ? formData.availability.join(", ")
               : "Not specified"
           )}
-- Resume File: ${sanitize(
-            formData.resumeFile ? formData.resumeFile.name : "No file uploaded"
-          )}
-- File Size: ${sanitize(
-            formData.resumeFile
-              ? `${(formData.resumeFile.size / 1024 / 1024).toFixed(2)} MB`
-              : "N/A"
-          )}
-- File Type: ${sanitize(formData.resumeFile ? formData.resumeFile.type : "N/A")}
 - Additional Information: ${sanitize(formData.message)}
 
 Contact Information:
 - Name: ${baseParams.from_name}
 - Email: ${baseParams.from_email}
 - Phone: ${baseParams.phone}
+
+Note: Applicant will email resume separately to careers@yummyyako.com
         `.trim()
         ),
       };
